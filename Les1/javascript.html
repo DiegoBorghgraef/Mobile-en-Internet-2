@@ -1,15 +1,105 @@
-<html>
-    <h2>Berekeningen</h2>
-    <table>
-        <fieldset>
+<html style="background-color: darkgrey">
+<h2>Berekeningen</h2>
+<table>
+    <fieldset>
+        <script type="text/javascript">
+            "use strict";
+            var uitkomst1 = 4 * 5 + 10;
+            var uitkomst2 = 4 + (5 + 10);
+            document.write('uitkomst1: ' + uitkomst1 + '<br>uitkomst 2: ' + uitkomst2);
+        </script>
+    </fieldset>
+</table>
+<br>
+<table>
+    <fieldset>
+        <script type="text/javascript">
+            var lijst1 = new Array(50, 5, 10);
+            var lijst2 = [0, 5, 10];
+            document.write('Lijst 1[1] : ' + lijst1[1] + '<br>Lijst 2[1] : ' + lijst2[1])
+        </script>
+    </fieldset>
+</table>
+<br>
+<table>
+    <fieldset>
+        <script type="text/javascript">
+            function telOp() {
+                return 1000 + 100;
+            }
+            document.write('som : ' + telOp() + '<br>');
+        </script>
+    </fieldset>
+</table>
+<br>
 <script type="text/javascript">
-    "use strict";
-var uitkomst1 = 4*5+10;
-var uitkomst2 = 4+(5+10);
-
-document.write('uitkomst1: ' + uitkomst1 + '<br>uitkomst 2: ' + uitkomst2);
-    <button onclick="myFunction()">Try it</button>
+    function optellen('waarde1 + waarde2') {
+        return waarde1 + waarde2;
+    }
+    document.write('De som is: ' + optellen(1, 5), '<br>');
+    document.write('De tweede som is : ' + optellen(7, 9), '<br>');
 </script>
-        </fieldset>
-    </table>
+<br>
+<h2>Verschil Berekenen</h2>
+<fieldset>
+    <script type="text/javascript">
+        var minwaarde1 = 5;
+        var minwaarde2 = 2;
+        document.write('Het verschil is ' + (minwaarde1 - minwaarde2) + '<br>')
+    </script>
+</fieldset>
+<br>
+<h2>Vermenigvuldeging Berekenen</h2>
+<fieldset>
+    <script type="text/javascript">
+        var minwaarde1 = 5;
+        var minwaarde2 = 5;
+        document.write('De vermeningvuldeging is ' + (minwaarde1 * minwaarde2) + '<br>')
+    </script>
+</fieldset>
+<br>
+<h2>Deling Berekenen</h2>
+<fieldset>
+    <script type="text/javascript">
+        var minwaarde1 = 5;
+        var minwaarde2 = 2;
+        document.write('De deling is ' + (minwaarde1 / minwaarde2) + '<br>')
+    </script>
+</fieldset>
+<br>
+<h2>Vermeningvuldeging 2</h2>
+<fieldset>
+    <script type="text/javascript">
+        function maal(waarde1, waarde2) {
+            return waarde1 * waarde2;
+        }
+        document.write('De vermeningvuldeging is ' + maal(4, 5) + '<br>')
+    </script>
+</fieldset>
+    <br>
+<fieldset>
+    <h2> Oefening </h2>
+    <script type="text/javascript">
+        function optellen(waarde1, waarde2) {
+            return waarde1 + waarde2;
+        }
+
+        function verminderen(waarde1, waarde2) {
+            return waarde1 - waarde2;
+        }
+
+        function maal(waarde1, waarde2) {
+            return waarde1 * waarde2;
+        }
+
+        function delen(waarde1, waarde2) {
+            return waarde1 / waarde2;
+        }
+        document.write('De som is: ' + optellen(5, 5) + '<br>')
+        document.write('het verschil is: ' + verminderen(5, 5) + '<br>')
+        document.write('De vermingvuldeging is: ' + maal(5, 5) + '<br>')
+        document.write('De deling is: ' + delen(5, 5) + '<br>')
+    </script>
+</fieldset>
+
 </html>
