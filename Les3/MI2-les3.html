@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+
+		<title>MI2-les3</title>
+		<meta name="description" content="" />
+		<meta name="author" content="Steven" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link rel="stylesheet" href="voorbeelden.css">
+		<style>
+			.vraag{
+				font-style : italic;
+				background-color: #222;
+				
+			}
+			.vraag p{
+				color: #aaf;
+				font-style:normal;
+			}
+		</style>
+        <!--    De link naar jQuery staat hier vooraan in het document.
+                Een andere plaats waar dit soort linken naar js bestanden
+                ook heel veel geplaatst wordt, is onderaan het document,
+                vlak voor het sluiten van de body.
+
+                Het voordeel van die laatste techniek, is dat je iets meer
+                zeker bent dat de assets die je aanspreekt in je scripten
+                geladen zijn.
+        -->
+		<script src="js/jquery-3.1.1.min.js"> </script>
+        <script type="text/javascript">
+            // we plaatsen use strict hier vooraan het document.
+            "use strict";
+            /*global browser, $, console  */
+            
+            // de vorig regel was nodig om er voor te zorgen dat
+            // jslint geen problemen maakt van $ die niet gedeclareerd zou zijn. $ Is wel gedeclareerd, maar in een ander bestand (jquery-1.12.1.min.js) en de linter kan dat hier niet zien.
+            // Met het keyword 'global' geven we aan dat de woorden die
+            // er op volgen globaal beschikbaar zijn en dat er dus geen 
+            // JSLint problemen op de beschikbaarheid moet worden gegeven.
+            
+           
+            $(
+                // Het argument van $() is een functie
+                // dat kan zowel de naam van een functie zijn, als een
+                // functie zonder naam die je volledig mee opgeeft als
+                // parameter.
+                // In dit geval werken we met een functie zonder naam.
+                // Deze functie functie zal asynchroon geladen worden,
+                // dwz dat deze pas uitgevoerd zal worden nadat de pagina
+                // geladen is.
+                function () {
+                    
+                    // Voorbeeld 1 :
+                    $("#resultaat1").html("achtergrondkleur van dit element:" + $("#resultaat1").css("background-color"));
+                    console.log("Hallo 'onzichtbare' wereld!");
+                    
+                    // Voorbeeld 2 :
+                    $("#voorbeeld2 div > p").css("display", "none");
+                    $("#voorbeeld2 div.actief > p").css("display", "block");
+                    
+                    // Voorbeeld 3 : 
+                    $("input[required]").after("* <span style='background-color:#F70;'>verplicht<\/span> veld");
+                    // die \/ komt het escapen van het teken / met de gewone slash \. Het werkt ook zonder, maar JSLint heeft liever dat je dit op deze manier doet.                    
+                    
+                } // hier moet geen ; komen. We zitten hier nog in de .ready() functie aanroep
+            );
+            
+                
+            
+            
+            
+        </script>
+		
+
+	</head>
+
+	<body>
+		<div>
+			<header>
+				<h1>MI2-les3</h1>
+			</header>
+
+			<section>
+				<article class="voorbeeld">
+					<h2>Achtergrondkleur opvragen met javascript</h2>
+
+					<div class="verborgen">
+							<div title="code" class="code">
+<pre>
+// Met IE 6 &amp; 7
+var headerElement = document.getElementById("resultaat1");
+var headerBackground = headerElement.currentStyle.backgroundColor;	
+
+// Met FF 3+
+var headerElement = document.getElementById("resultaat1");
+var headerStyle = document.defaultView.getComputedStyle(headerElement, null);
+var headerBackground = headerStyle.backgroundColor;
+
+// Met jQuery (alle browsers) : haal de achtergrondkleur van "resultaat1" op en 
+// toon in dat element met tekst wat de kleur van dat element is :
+
+<mark>$</mark>("#resultaat1").html(
+	"achtergrondkleur van dit element:" + 
+	$("#resultaat1").css("background-color")
+);
+
+</pre>
+
+<div class="resultaat" title="resultaat" id="resultaat1">
+
+</div>
+						</div>
+					</div>
+
+				</article>
+				
+<article class="voorbeeld" id="voorbeeld2">
+					<h2>Parent-child &amp; decendent selectors</h2>
+
+					<div class="verborgen">
+							<div title="code" class="code">
+<pre>
+$(document).ready(
+	function(){
+		$("#voorbeeld2 div <mark>&gt;</mark> p").css("display","none");
+		$("#voorbeeld2 div.actief <mark>&gt;</mark> p").css("display","block");
+});
+	
+</pre>
+
+<div class="vraag">
+	Hoe werkt jQuery?
+	<p> Dat zien we in deze cursus</p>
+</div>
+<div class="vraag actief">
+	Wat zijn parent-child selectors
+	<p> Een parent-child selector is in staat om directe sub-elementen van een
+		hoofdelement te selecteren</p>
+</div>
+<div class="vraag">
+	Waar vind ik meer informatie over jQuery?
+	<p> Op de website <a href="http://jquery.com">jQuery.com</a>.</p>
+</div>
+
+
+<div class="resultaat" title="resultaat" id="resultaat2">
+</div>
+						</div>
+					</div>
+
+				</article>		
+<article class="voorbeeld" id="voorbeeld3">
+					<h2>Selecties via attributen</h2>
+
+					<div class="verborgen">
+							<div title="code" class="code">
+<pre>
+
+$(document).ready(
+		function(){
+			$("input[required]").after("* verplicht veld");
+});
+	
+</pre>
+
+
+
+
+<div class="resultaat" title="resultaat" id="resultaat3">
+	<form action="/">
+		<div>
+			<label for="naam">naam:</label><input id="naam" type="text" required >
+		</div>
+		<div>
+			<label for="email">e-mail adres:</label><input id="email" type="email" required >
+		</div>
+		<div>
+			<label for="telefoon">telefoon:</label><input id="telefoon" type="tel" >
+		</div>
+
+	<input type="submit" >
+	<input type="reset" >
+	</form>
+
+</div>
+						</div>
+					</div>
+
+				</article>	
+					
+			</section>
+
+		</div>
+	</body>
+</html>

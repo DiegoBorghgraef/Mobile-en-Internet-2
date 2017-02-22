@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<title>MI2-les2</title>
+		<meta name="description" content="" />
+		<meta name="author" content="Steven" />
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+
+		<link rel="stylesheet" href="voorbeelden.css">
+
+	</head>
+
+	<body>
+		<div>
+			<header>
+				<h1>MI2-les2</h1>
+			</header>
+
+			<section>
+				<article class="voorbeeld">
+					<h2>Voorbeeld 1 : switch instructies</h2>
+
+					<div class="verborgen">
+							<div title="code" class="code">
+<pre>var keuze = 2;
+								
+switch(keuze){
+	case 1:
+		document.write('Keuze één &lt;br&gt;');
+		break;
+	case 2:
+		document.write('Keuze twee &lt;br&gt;');
+		break;
+	case 3:
+		document.write('Keuze drie &lt;br&gt;');
+}
+</pre>
+
+					<div class="resultaat" title="resultaat">
+                    <script type="text/javascript">
+                        "use strict";
+                        var keuze = 2;
+
+                        switch (keuze) {
+                        case 1:
+                            document.write('Keuze één <br>');
+                            break;
+                        case 2:
+                            document.write('Keuze twee <br>');
+                            break;
+                        case 3:
+                            document.write('Keuze drie <br>');
+                            break;
+                        }
+
+                    </script>
+							
+
+</div>
+						</div>
+					</div>
+
+				</article>
+				
+<article class="voorbeeld">
+					<h2>Voorbeeld 2 : iteraties : while </h2>
+
+					<div class="verborgen">
+
+<div class="code" title="code">
+<pre title="code">
+var i = 0; // niet "int i = 0" zoals in het boek staat !!!
+while (i &lt; 10) {
+	document.write('i = ' + i + '&lt;br&gt;');
+	i = i + 1; // i++ is een kortere notatie ...
+}
+</pre>
+<div class="resultaat" title="resultaat">
+<script type="text/javascript">
+								
+var i = 0; // niet "int i =0" zoals in het boek staat !!!
+while (i < 10) {
+	document.write('i = ' + i + '<br>');
+	i = i + 1; // i++ is een kortere notatie ...
+}
+</script>
+	</div></div></div></article>
+	
+<article class="voorbeeld">
+					<h2>Voorbeeld 3 : iteraties : do-while</h2>
+
+					<div class="verborgen">
+
+<div class="code" title="code">
+<pre title="code">
+var waarde = 0;
+do {
+	waarde = 1;
+} while (false)
+// de variabele is nu 1
+// de instructie(s) na do worden minstens 1 keer uitgevoerd.
+document.write('waarde : ' + waarde + '&lt;br&gt;');
+</pre>
+<div class="resultaat" title="resultaat">
+<script type="text/javascript">
+var waarde = 0;
+do {
+	waarde = 1;
+} while (false);
+// de instructie(s) na do worden minstens 1 keer uitgevoerd.
+document.write('waarde : ' + waarde + '<br>');
+</script>
+	</div></div></div></article>
+	
+
+<article class="voorbeeld">
+					<h2>Voorbeeld 4 : iteraties : for</h2>
+
+					<div class="verborgen">
+
+<div class="code" title="code">
+<pre title="code">
+var teller;
+for (teller = 0; teller &lt;= 20; teller++){
+	document.write("het kwadraat van " + teller + 'is '+ teller * teller + '&lt;br&gt;');
+}</pre>
+<div class="resultaat" title="resultaat">
+<script type="text/javascript">
+var teller;
+for (teller = 0; teller <= 20; teller++) {
+	document.write("het kwadraat van " + teller + ' is ' + (teller * teller) + '<br>');
+}
+</script>
+	</div></div></div></article>
+		
+		
+<article class="voorbeeld">
+					<h2>Voorbeeld 5 : Objecten - prototypen met function - 1</h2>
+
+					<div class="verborgen">
+
+<div class="code" title="code">
+<pre title="code">
+var WeerInfo = {
+	ActueelTekst : function(){
+		return "Het weer in " + this.Lokatie + " is nu : " + this.Weer;
+	},
+	Weer: 'zonnig',
+	Lokatie: 'Brussel'
+};
+document.write(WeerInfo.ActueelTekst() + '&lt;br&gt;'); // toont het weer in ...
+var plaatsnaam = WeerInfo.Lokatie; // plaatsnaam = "Brussel"</pre>
+<div class="resultaat" title="resultaat">
+<script type="text/javascript">
+var WeerInfo = {
+	ActueelTekst : function () {
+		return "Het weer in " + this.Lokatie + " is nu : " + this.Weer;
+	},
+	Weer: 'zonnig',
+	Lokatie: 'Brussel'
+};
+document.write(WeerInfo.ActueelTekst() + '<br>'); // toont het weer in ...
+var plaatsnaam = WeerInfo.Lokatie; // plaatsnaam = "Brussel"
+
+
+
+							</script>
+	</div></div></div></article>
+	
+<article class="voorbeeld">
+					<h2>Voorbeeld 6 : Objecten - prototypen met function - 2</h2>
+
+					<div class="verborgen">
+
+<div class="code" title="code">
+<pre title="code">
+var WeerInfo = {
+	ActueelTekst : function(){
+		return "Het weer in " + this.Lokatie + " is nu : " + this.Weer;
+	},
+	Weer: 'zonnig',
+	Lokatie: 'Brussel',
+	<mark>"Temperatuur in Celsius"</mark>: 5.1,
+	<mark>0</mark>:5
+};
+
+var plaatsnaam = WeerInfo.Lokatie; // plaatsnaam = "Brussel"
+var temperatuur = WeerInfo[<mark>"Temperatuur in Celsius"</mark>]; // temperatuur is 5.1
+var windkracht = WeerInfo[<mark>0</mark>]; // windkracht is 5
+
+document.write(temperatuur + '°C&lt;br&gt;'); 
+document.write(windkracht + ' beaufort&lt;br&gt;');</pre>
+<div class="resultaat" title="resultaat">
+<script type="text/javascript">
+								
+var WeerInfo = {
+	ActueelTekst : function () {
+		return "Het weer in " + this.Lokatie + " is nu : " + this.Weer;
+	},
+	Weer: 'zonnig',
+	Lokatie: 'Brussel',
+	"Temperatuur in Celsius": 5.1,
+	0: 5
+};
+
+var plaatsnaam = WeerInfo.Lokatie; // plaatsnaam = "Brussel"
+var temperatuur = WeerInfo["Temperatuur in Celsius"]; // temperatuur is 5.1
+var windkracht = WeerInfo[0]; // windkracht is 5
+
+document.write(temperatuur + '°C<br>');
+document.write(windkracht + ' beaufort<br>');
+</script>
+</div></div></div></article>
+
+
+
+<article class="voorbeeld">
+					<h2>Voorbeeld 7 : functiedeclaratie vs functie expressie</h2>
+
+					<div class="verborgen">
+
+<div class="code" title="code">
+<pre title="code">
+/*
+ * Deze instructie lukt niet doordat 'optellen' op dit moment
+ * de functie 'optellen' nog niet herkend wordt (zie keyword
+ * voor optellen).
+ */
+var uitkomst1 = optellen(10,20);
+/*
+ * Deze instructie wordt wel herkend
+ */
+var uitkomst2 = vermenigvuldigen(10,20);
+
+<mark>var</mark> optellen = function(x,y){
+	return x + y;
+}	
+
+function vermenigvuldigen(x,y){
+	return x * y;
+}
+
+document.write("uitkomst 1 : " + uitkomst1+'&lt;br&gt;');
+document.write("uitkomst 2 : " + uitkomst2+'&lt;br&gt;');
+</pre>
+<div class="resultaat" title="resultaat">
+							<script type="text/javascript">
+var uitkomst1;
+/*
+ * Deze instructie lukt niet doordat optellen op dit moment
+ * de functie optellen nog niet herkend wordt (zie keyword
+ * voor optellen).
+ */
+
+// uitkomst1 = optellen(10,20);
+
+/*
+ * Deze instructie wordt wel herkend
+ * Maar zoals je in de JSLint fouten kan lezen,
+ * is het toch beter om deze functie in je document
+ * te plaatsen voor je er gebruik van maakt
+ */
+var uitkomst2 = vermenigvuldigen(10, 20);
+
+var optellen = function (x, y) {
+	return x + y;
+};
+
+function vermenigvuldigen(x, y) {
+	return x * y;
+}
+
+document.write("uitkomst 1 : " + uitkomst1 + '<br>');
+document.write("uitkomst 2 : " + uitkomst2 + '<br>');
+
+</script>
+	</div></div></div></article>
+	
+<article class="voorbeeld">
+					<h2>Voorbeeld 8 : anonieme functie</h2>
+
+					<div class="verborgen">
+
+<div class="code" title="code">
+<pre title="code">
+var weertekst;
+<mark>(</mark>function <mark>()</mark>{
+	var weertekst = "Vandaag is het zonnig.";
+	document.write(weertekst + '&lt;br&gt;');
+}<mark>())</mark>;
+document.write('weertekst : ' + weertekst + '&lt;br&gt;');
+</pre>
+<div class="resultaat" title="resultaat">
+<script type="text/javascript">
+// als de var weertekst niet aangemaakt is, zal de code falen van
+// zodra deze code aangeroepen wordt en deze niet gedefinieerd is.
+var weertekst; 
+
+				
+(function () {
+    // weertekst in deze functie heeft een andere scope dan 
+    // weertekst buiten de functie.
+	var weertekst = "Vandaag is het zonnig.";
+	document.write(weertekst + '<br>');
+}());
+/*
+ * deze lijn geeft problemen als var weertekst niet herkend wordt. Volgende lijnen blijven problemen geven.
+ * Test dit door de declararie van weertekst voor de anonieme functie uit te schakelen 
+ */
+document.write('weertekst : ' + weertekst + '<br>');
+</script>
+	</div></div></div></article>			
+	
+			</section>
+
+		</div>
+	</body>
+</html>

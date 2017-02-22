@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+
+
+		<title>parent-child selectors</title>
+		<meta name="description" content="" />
+		<meta name="author" content="Steven" />
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+		<style>
+			.vraag {
+				font-style: italic;
+				background-color: #ddd;
+			}
+			.vraag p {
+				color: blue;
+				font-style: normal;
+			}
+		</style>
+		<script src="js/jquery-3.1.1.min.js"></script>
+
+		<script type="text/javascript">
+            "use strict";
+            /*global $ */
+			$(function () {
+				$("div > p").css("display", "none");
+				$("div.actief > p").css("display", "block");
+			});
+
+		</script>
+	</head>
+
+	<body>
+		<div>
+			<header>
+				<h1>Parent-child selectors</h1>
+			</header>
+
+			<div class="vraag">
+				Hoe werkt jQuery?
+				<p>
+					Dat zien we in deze cursus
+				</p>
+			</div>
+			<div class="vraag actief">
+				Wat zijn parent-child selectors?
+				<p>
+					Een parent-child selector is in staat om directe sub-elementen van een
+					hoofdelement te selecteren
+				</p>
+			</div>
+			<div class="vraag">
+				Waar vind ik meer informatie over jQuery?
+				<p>
+					Op de website <a href="http://jquery.com">jQuery.com</a>.
+				</p>
+			</div>
+
+			<footer>
+				<p>
+					&copy; Copyright  by Steven
+				</p>
+			</footer>
+		</div>
+	</body>
+</html>
