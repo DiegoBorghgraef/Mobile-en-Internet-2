@@ -10,12 +10,33 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 		<link rel="stylesheet" href="css/jquery-ui.min.css" />
-        <!--<link rel="stylesheet" href="css/jquery-ui.structure.min.css" />
-        <link rel="stylesheet" href="css/jquery-ui.theme.min.css" />-->
 
 		<link rel="stylesheet" href="css/voorbeelden.css">
 
-		<script src="js/jquery-3.1.1.min.js"></script>
-		<script src="js/jquery-ui.min.js"></script>
-		<script src="js/les4.js" type="text/javascript"></script>
 	</head>
+    
+    <body>
+        <script src="jquery-3.1.1.js"></script>
+        
+        
+        <ul>
+        <li>Brussel</li>
+        <li>Antwerpen</li>
+        <li>Gent</li>
+        <li>Hasselt</li>
+        <li>Brugge</li>
+        </ul>
+        
+        <script >
+        var plaats = $("li").last().prependTo("ul");
+        var aantal = $("li").length;
+        $("body").before("Aantal plaatsen: " + aantal);
+            
+        $("ul>li").append(function(index) {temperatuur = 10 + Math.floor(Math.random() * 20);
+        return ", temperatuur is : " + temperatuur;});
+                                           
+        </script>
+        
+    
+    
+    </body>
