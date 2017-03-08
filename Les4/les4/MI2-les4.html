@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+
+		<title>MI2-les4</title>
+		<meta name="description" content="" />
+		<meta name="author" content="Steven" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link rel="stylesheet" href="css/jquery-ui.min.css" />
+        <!--<link rel="stylesheet" href="css/jquery-ui.structure.min.css" />
+        <link rel="stylesheet" href="css/jquery-ui.theme.min.css" />-->
+
+		<link rel="stylesheet" href="css/voorbeelden.css">
+
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<script src="js/jquery-ui.min.js"></script>
+		<script src="js/les4.js" type="text/javascript"></script>
+	</head>
+
+	<body>
+		<div>
+			<header>
+				<h1>MI2-les4</h1>
+			</header>
+			<nav>
+				<ul id="menu">
+
+				</ul>
+
+			</nav>
+
+			<section>
+<!-- Voorbeeld 1 -->
+<article class="voorbeeld">
+    <h2><span>1 : Attributen aanpassen met jQuery</span></h2>
+
+    <div >
+        <div title="code" class="code">
+            <pre>
+// attribuut aanpassen (alt bestaat al in html)
+$("#foto").attr("alt","jQuery ... write less, do more!");
+// attribuut toevoegen (title bestaat nog niet in html)
+$("#foto").attr("title","jQuery ... write less, do more!");
+</pre>
+            <div class="resultaat" title="resultaat" id="resultaat1">
+                <img src="img/logo_jQuery.png" id="foto" alt="...">
+            </div>
+        </div>
+    </div>
+
+</article>
+
+<!-- Voorbeeld 2 -->
+<article class="voorbeeld">
+    <h2><span>2 : meerdere attributen aanpassen met jQuery</span></h2>
+
+    <div >
+        <div title="code" class="code">
+            <pre>
+$("#foto2").attr(<mark>{</mark>
+	<mark>alt</mark>: "jQuery ... write less, do more!"<mark>,</mark>
+	title: "jQuery ... write less, do more!"
+<mark>}</mark>);
+</pre>
+            <div class="resultaat" title="resultaat">
+                <img src="img/logo_jQuery.png" id="foto2" alt="...">
+            </div>
+        </div>
+    </div>
+
+</article>
+
+<!-- Voorbeeld 3 -->
+<article class="voorbeeld">
+    <h2><span>3 : attributen aanpassen dmv value callback</span></h2>
+
+    <div >
+        <div title="code" class="code">
+            <pre>
+$("#voorbeeld3 a").attr({
+	target: "_blank",
+	id: function( index, oudeWaarde){ // pas de id aan
+		return oudeWaarde + "-" +index;
+	},
+	title: function(index){ // pas de title aan 
+		return "link" + "-" +index;
+	}
+				
+});
+</pre>
+            <div class="resultaat" title="resultaat" id="voorbeeld3">
+                <p>
+                    <a href="#" id="meer">Lees meer ...</a>
+                </p>
+                <p>
+                    <a href="#" id="meer">Lees meer ...</a>
+                </p>
+                <p>
+                    <a href="#" id="meer">Lees meer ...</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+</article>
+
+<!-- Voorbeeld 4 -->
+<article class="voorbeeld">
+    <h2><span>4 : Elementen &amp; inhoud toevoegen</span></h2>
+
+    <div >
+        <div title="code" class="code">
+            <pre>
+// pas de inhoud dynamisch aan (merk op : we starten met 5 hoofdstukken)
+$("#inhoud")<mark>.html(</mark>
+	"&lt;li&gt;Hoofdstuk 1&lt;/li&gt;&lt;li&gt;Hoofdstuk 2&lt;/li&gt;&lt;li&gt;Hoofdstuk 3&lt;/li&gt;"
+<mark>)</mark>;
+// Pas de tekst van de h2 dynamisch aan op basis van het aantal
+// li elementen dat in het element #inhoud zit
+// let op : we doen dit hier met een functie
+$("#voorbeeld4 h2")<mark>.html(</mark>
+	function(){
+		var aantal = $("#inhoud li").length;
+		return "Het boek heeft "+aantal+" hoofdstukken.";
+	}
+<mark>)</mark>; 
+</pre>
+            <div class="resultaat" title="resultaat" id="voorbeeld4">
+                <h2> Het boek heeft de volgende hoofdstukken.</h2>
+                <ul id="inhoud">
+                    <li>
+                        Hoofdstuk 1
+                    </li>
+                    <li>
+                        Hoofdstuk 2
+                    </li>
+                    <li>
+                        Hoofdstuk 3
+                    </li>
+                    <li>
+                        Hoofdstuk 4
+                    </li>
+                    <li>
+                        Hoofdstuk 5
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</article>
+
+<!-- Voorbeeld 5.1 -->
+<article class="voorbeeld">
+    <h2><span>5.1 : Toevoegen van elementen - 1 -</span></h2>
+
+    <div >
+        <div title="code" class="code">
+            <pre>
+// geef ieder antwoord een uniek id, gebaseerd op de volgorde
+$("#antwoorden div").attr(
+	{
+		id: function(index, waarde){
+			return "antwoord-" + index;
+		}
+	}
+);
+// link nu vragen naar deze antwoorden, op basis van de volgorde
+$("#vragen a").attr(
+	{
+		href: function(index, waarde){
+			return "#antwoord-" + index;
+		}
+	}
+);
+</pre>
+            <div class="resultaat" title="resultaat" id="voorbeeld5">
+                <h2> Veel gestelde vragen.</h2>
+                <ul id="vragen">
+                    <li>
+                        <a href="">Waarom zie ik op droge dagen wel witte, blauwe en zelfs rode waarnemingen?</a>
+                    </li>
+                    <li>
+                        <a href="">Hoe kan ik zien wat de intensiteit van de regenval is?</a>
+                    </li>
+                    <li>
+                        <a href="">Waarom zie ik bij Harlingen, voor Friesland en bij Engeland vaak witte strepen ook al is er geen regen daar?</a>
+                    </li>
+                    <li>
+                        <a href="">Waar komen de beelden vandaan?</a>
+                    </li>
+                    <li>
+                        <a href="">Waarom zie ik geen bewegende beelden?</a>
+                    </li>
+
+                </ul>
+                <div id="antwoorden">
+                    <div class="vraag">
+                        <h3>Vraag 1</h3>
+                        <p>
+                            Antwoord 1
+                        </p>
+                    </div>
+                    <div class="vraag">
+                        <h3>Vraag 2</h3>
+                        <p>
+                            Antwoord 2
+                        </p>
+                    </div>
+                    <div class="vraag">
+                        <h3>Vraag 3</h3>
+                        <p>
+                            Antwoord 3
+                        </p>
+                    </div>
+                    <div class="vraag">
+                        <h3>Vraag 4</h3>
+                        <p>
+                            Antwoord 4
+                        </p>
+                    </div>
+                    <div class="vraag">
+                        <h3>Vraag 5</h3>
+                        <p>
+                            Antwoord 5
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</article>
+
+<!-- Voorbeeld 5.2 -->
+<article class="voorbeeld">
+    <h2><span>5.2 Toevoegen van elementen - 2 - append</span></h2>
+
+    <div >
+        <div title="code" class="code">
+            <pre>
+// plaats onder elk antwoord een link die de bezoeker naar de lijst van
+// de vragen stuurt
+$("#antwoorden2 div")<mark>.append(</mark>"&lt; a href='#vragen2'&gt; terug naar de vragen&lt;/a&gt;"<mark>)</mark>;
+</pre>																																																																																																																																										
+
+
+
+            <div class="resultaat" title="resultaat" id="voorbeeld52">
+                <h2> Veel gestelde vragen.</h2>
+                <ul id="vragen2">
+                    <li>
+                        <a href="">Waarom zie ik op droge dagen wel witte, blauwe en zelfs rode waarnemingen?</a>
+                    </li>
+                    <li>
+                        <a href="">Hoe kan ik zien wat de intensiteit van de regenval is?</a>
+                    </li>
+                    <li>
+                        <a href="">Waarom zie ik bij Harlingen, voor Friesland en bij Engeland vaak witte strepen ook al is er geen regen daar?</a>
+                    </li>
+                    <li>
+                        <a href="">Waar komen de beelden vandaan?</a>
+                    </li>
+                    <li>
+                        <a href="">Waarom zie ik geen bewegende beelden?</a>
+                    </li>
+
+                </ul>
+                <div id="antwoorden2">
+                    <div class="vraag">
+                        <h3>Vraag 1</h3>
+                        <p>
+                            Antwoord 1
+                        </p>
+                    </div>
+                    <div class="vraag">
+                        <h3>Vraag 2</h3>
+                        <p>
+                            Antwoord 2
+                        </p>
+                    </div>
+                    <div class="vraag">
+                        <h3>Vraag 3</h3>
+                        <p>
+                            Antwoord 3
+                        </p>
+                    </div>
+                    <div class="vraag">
+                        <h3>Vraag 4</h3>
+                        <p>
+                            Antwoord 4
+                        </p>
+                    </div>
+                    <div class="vraag">
+                        <h3>Vraag 5</h3>
+                        <p>
+                            Antwoord 5
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</article>
+
+<!-- Voorbeeld 5.3 -->
+<article class="voorbeeld">
+    <h2><span>5.3 : Toevoegen van elementen - 3 - appendTo</span></h2>
+
+    <div >
+        <div title="code" class="code">
+            <pre>
+// het zelfde als het vorige, maar met .appendTo()
+$("&lt; a href='#vragen3'&gt; terug naar de vragen&lt; /a&gt; ")<mark>.appendTo(</mark>"#antwoorden3 div"<mark>)</mark>;
+</pre>																																																																																																																																										
+
+
+
+
+            <div class="resultaat" title="resultaat" id="voorbeeld53">
+                <h2> Veel gestelde vragen.</h2>
+                <ul id="vragen3">
+                    <li>
+                        <a href="">Waarom zie ik op droge dagen wel witte, blauwe en zelfs rode waarnemingen?</a>
+                    </li>
+                    <li>
+                        <a href="">Hoe kan ik zien wat de intensiteit van de regenval is?</a>
+                    </li>
+                    <li>
+                        <a href="">Waarom zie ik bij Harlingen, voor Friesland en bij Engeland vaak witte strepen ook al is er geen regen daar?</a>
+                    </li>
+                    <li>
+                        <a href="">Waar komen de beelden vandaan?</a>
+                    </li>
+                    <li>
+                        <a href="">Waarom zie ik geen bewegende beelden?</a>
+                    </li>
+
+                </ul>
+                <div id="antwoorden3">
+                    <div class="vraag">
+                        <h3>Vraag 1</h3>
+                        <p>
+                            Antwoord 1
+                        </p>
+                    </div>
+                    <div class="vraag">
+                        <h3>Vraag 2</h3>
+                        <p>
+                            Antwoord 2
+                        </p>
+                    </div>
+                    <div class="vraag">
+                        <h3>Vraag 3</h3>
+                        <p>
+                            Antwoord 3
+                        </p>
+                    </div>
+                    <div class="vraag">
+                        <h3>Vraag 4</h3>
+                        <p>
+                            Antwoord 4
+                        </p>
+                    </div>
+                    <div class="vraag">
+                        <h3>Vraag 5</h3>
+                        <p>
+                            Antwoord 5
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</article>
+
+<!-- Voorbeeld 5.4 -->
+<article class="voorbeeld">
+    <h2><span>5.4 : Toevoegen van elementen - 4 - after</span></h2>
+
+    <div >
+        <div title="code" class="code">
+            <pre>
+								
+// de bezoeker moet op de vraag kunnen klikken en direct naar het
+// juiste antwoord navigeren :
+
+// geef ieder antwoord een uniek id, gebaseerd op de volgorde
+$("#antwoorden4 div").attr({
+	id : function(index, waarde) {
+		return "antwoord4-" + index;
+	}
+});
+// link nu vragen naar deze antwoorden, op basis van de volgorde
+$("#vragen4 a").attr({
+	href : function(index, waarde) {
+		return "#antwoord4-" + index;
+	}
+});
+
+// plaats onder elk antwoord een link die de bezoeker naar de lijst van
+// de vragen stuurt. let op het verschil tussen after en append !
+// kijk na dmv  de inspectors!
+$("#antwoorden4 div")<mark>.after(</mark>"&lt; a href='#vragen4'&gt; terug naar de vragen&lt;/a&gt;"<mark>)</mark>;
+</pre>
+            <div class="resultaat" title="resultaat" id="voorbeeld54">
+                <h2> Veel gestelde vragen.</h2>
+                <ul id="vragen4">
+                    <li>
+                        <a href="">Waarom zie ik op droge dagen wel witte, blauwe en zelfs rode waarnemingen?</a>
+                    </li>
+                    <li>
+                        <a href="">Hoe kan ik zien wat de intensiteit van de regenval is?</a>
+                    </li>
+                    <li>
+                        <a href="">Waarom zie ik bij Harlingen, voor Friesland en bij Engeland vaak witte strepen ook al is er geen regen daar?</a>
+                    </li>
+                    <li>
+                        <a href="">Waar komen de beelden vandaan?</a>
+                    </li>
+                    <li>
+                        <a href="">Waarom zie ik geen bewegende beelden?</a>
+                    </li>
+
+                </ul>
+                <div id="antwoorden4">
+                    <div class="vraag">
+                        <h3>Vraag 1</h3>
+                        <p>
+                            Antwoord 1
+                        </p>
+                    </div>
+                    <div class="vraag">
+                        <h3>Vraag 2</h3>
+                        <p>
+                            Antwoord 2
+                        </p>
+                    </div>
+                    <div class="vraag">
+                        <h3>Vraag 3</h3>
+                        <p>
+                            Antwoord 3
+                        </p>
+                    </div>
+                    <div class="vraag">
+                        <h3>Vraag 4</h3>
+                        <p>
+                            Antwoord 4
+                        </p>
+                    </div>
+                    <div class="vraag">
+                        <h3>Vraag 5</h3>
+                        <p>
+                            Antwoord 5
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</article>
+
+<!-- Voorbeeld 5.5 -->
+<article class="voorbeeld">
+    <h2><span>5.5 : Toevoegen van elementen - 5 - verplaatsen</span></h2>
+
+    <div >
+        <div title="code" class="code">
+            <pre>
+								
+// we hernemen de vragen van vragen4 en plaatsen deze in #vragen5
+// Let op : we clonen (copiëren) de children voor we ze appenden
+// want append verplaatst! 
+$("#vragen4").children()<mark>.clone()</mark>.appendTo("#vragen5");
+				
+// de bezoeker moet op de vraag kunnen klikken en direct naar het
+// juiste antwoord navigeren :
+
+// geef ieder antwoord een uniek id, gebaseerd op de volgorde
+$("#antwoorden5 div").attr({
+	id : function(index, waarde) {
+		return "antwoord5-" + index;
+	}
+});
+// link nu vragen naar deze antwoorden, op basis van de volgorde
+$("#vragen5 a").attr({
+	href : function(index, waarde) {
+		return "#antwoord5-" + index;
+	}
+});				
+				
+// plaats onder elk antwoord een link die de bezoeker naar de lijst van
+// de vragen stuurt. let op het verschil tussen after en append !
+// kijk na dmv  de inspectors!
+$("#antwoorden5 div").after("&lt; a href='#vragen5'&gt; terug naar de vragen&lt;/a&gt;");
+</pre>
+            <div class="resultaat" title="resultaat" id="voorbeeld55">
+                <h2> Veel gestelde vragen.</h2>
+                <ul id="vragen5">
+
+                </ul>
+                <div id="antwoorden5">
+                    <div class="vraag">
+                        <h3>Vraag 1</h3>
+                        <p>
+                            Antwoord 1
+                        </p>
+                    </div>
+                    <div class="vraag">
+                        <h3>Vraag 2</h3>
+                        <p>
+                            Antwoord 2
+                        </p>
+                    </div>
+                    <div class="vraag">
+                        <h3>Vraag 3</h3>
+                        <p>
+                            Antwoord 3
+                        </p>
+                    </div>
+                    <div class="vraag">
+                        <h3>Vraag 4</h3>
+                        <p>
+                            Antwoord 4
+                        </p>
+                    </div>
+                    <div class="vraag">
+                        <h3>Vraag 5</h3>
+                        <p>
+                            Antwoord 5
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </article>
+<article class="voorbeeld">
+                
+                <h2><span>Test</span></h2>
+                </article>
+
+			</section>
+
+		</div>
+	</body>
+</html>
