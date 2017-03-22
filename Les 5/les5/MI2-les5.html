@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<title>MI2-les5</title>
+		<meta name="description" content="" />
+		<meta name="author" content="Steven" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link rel="stylesheet" href="css/jquery-ui.min.css" />
+		
+		<link rel="stylesheet" href="css/voorbeelden.css">
+		
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<script src="js/jquery-ui.min.js"></script>
+		<script src="js/les5.js" type="text/javascript"></script>
+
+
+		<style type="text/css">
+			td{
+				width:200px;
+				border: 1px solid #ccc;
+				text-align:center;
+			}
+			.verborgen2{
+				display:none;
+			}
+			.artikel{
+				/*width:300px;
+				height:230px;
+				*/
+				background-color:#333;
+			}
+            
+            .voorbeeld .verborgen {
+                /* altijd zichtbaar, geen verdwijntruuks meer*/
+                opacity: 1;
+                height: auto;
+            }
+            .voorbeeld .code .resultaat {
+                /* altijd zichtbaar, geen verdwijntruuks meer*/
+                opacity: 1;
+                height: auto;
+            }
+            
+		</style>
+		
+		
+
+	</head>
+
+	<body>
+		<div>
+			<header>
+				<h1>MI2-les5</h1>
+			</header>
+			<nav>
+				<ul id="menu">
+
+				</ul>
+
+			</nav>
+			<section>
+<!-- Voorbeeld 1 -->
+<article class="voorbeeld" id='voorbeeld1'>
+					<h2><span>hoogte afbeeldingen aanpassen met jQuery</span></h2>
+
+					<div class="verborgen">
+							<div title="code" class="code">
+<pre>
+$('#voorbeeld1 img').each(
+	function(){
+		// als de afbeelding hoger is dan 300, dan verkleinen we ze
+		// in html tot 300 px hoogte 
+		if((this).height > 300)$(this).height(300);
+	}
+);
+</pre>
+
+<div class="resultaat" title="resultaat">
+	<img src="http://farm8.staticflickr.com/7154/6648726603_93322c885a.jpg" 
+	alt="de zon dichtbij">
+	<img src="http://static.ddmcdn.com/gif/sun-update-1.jpg" 
+	alt="de zon op afstand">
+	
+	
+
+
+</div></div></div></article>
+
+<!-- Voorbeeld 2 -->
+<article class="voorbeeld" id='voorbeeld2'>
+					<h2><span>Hoogte afbeeldingen aanpassen met jQuery - na laden window!</span></h2>
+
+					<div class="verborgen">
+							<div title="code" class="code">
+<pre>
+$(window).on("load", function(){
+		$('#voorbeeld2 img').each( // each is een eenvoudige methode om door alle elementen van een
+	         // verzameling te lopen.
+		function(){
+			// als de afbeelding hoger is dan 300, dan verkleinen we ze
+			// in html tot 300 px hoogte 
+			if((this).height > 300)$(this).height(300);
+		}
+	);
+	}
+);
+</pre>
+
+<div class="resultaat" title="resultaat">
+	<img src="http://farm8.staticflickr.com/7154/6648726603_93322c885a.jpg" 
+	alt="de zon dichtbij">
+	<img src="http://static.ddmcdn.com/gif/sun-update-1.jpg" 
+	alt="de zon op afstand">
+	
+	
+
+</div></div></div></article>
+
+<!-- Voorbeeld 3 -->
+<article class="voorbeeld" id='voorbeeld3'>
+					<h2><span>error event</span></h2>
+
+					<div class="verborgen">
+							<div title="code" class="code">
+<pre>
+$('#voorbeeld3 img').on("error", function(){
+	$(this).parent().html("&lt; img src='img/404-error.png'&gt;");
+});
+</pre>
+
+<div class="resultaat" title="resultaat">
+	<div>
+	<img src="http://weerfoto.buienradar.nl/p/2012/03/73096_t2.jpg" 
+	alt="Mooie foto">
+	</div>
+	<div>
+	<img src="http://weerfoto.buienradar.nl/p/2011/03/73_.jpg" 
+	alt="Niet te vinden...">
+	</div>
+	
+
+
+</div></div></div></article>
+
+<!-- Voorbeeld 3.5 -->
+<article class="voorbeeld" id='voorbeeld35'>
+               <h2><span>error event - on</span></h2>
+
+               <div class="verborgen">
+                     <div title="code" class="code">
+<pre>
+/* Omdat .error() deprecated is vanaf jQuery 1.8 
+ * .on() wordt verder nog meer uitgelegd
+ */
+$('#voorbeeld35 img').on("error",function(){
+   $(this).parent().html("&lt; img src='img/404-error.png'&gt;");
+});
+</pre>
+
+<div class="resultaat" title="resultaat">
+   <div>
+   <img src="http://weerfoto.buienradar.nl/p/2012/03/73096_t2.jpg" 
+   alt="Mooie foto">
+   </div>
+   <div>
+   <img src="http://weerfoto.buienradar.nl/p/2011/03/73_.jpg" 
+   alt="Niet te vinden...">
+   </div>
+   
+
+
+</div></div></div></article>
+
+<!-- Voorbeeld 4 -->
+<article class="voorbeeld" id='voorbeeld4'>
+					<h2><span>vb.4 : click event</span></h2>
+
+					<div class="verborgen">
+							<div title="code" class="code">
+<pre>
+var aantal = 0;
+
+function nieuweRegel(){
+	aantal ++;
+	var regel="&lt;tr&gt;&lt;td&gt; regel "+aantal+"&lt;/td&gt;&lt;/tr&gt;";
+	$("#voorbeeld4 table").append(regel);
+}
+
+$("#nieuweregel").click(nieuweRegel);
+</pre>
+
+<div class="resultaat" title="resultaat">
+
+	
+	<button id="nieuweregel">nieuwe regel</button>
+	<table>
+		
+	</table>
+
+
+</div></div></div></article>
+
+<!-- Voorbeeld 5-->
+<article class="voorbeeld" id='voorbeeld5'>
+					<h2><span>vb.5 : events &amp; elementen die (nog) niet in het DOM zitten</span></h2>
+
+					<div class="verborgen">
+							<div title="code" class="code">
+<pre>
+$("#nieuweregel2").click(nieuweRegel2);
+// de volgende regel zal geen effect hebben : wanneer document ready is,
+// zitten die knoppen nog niet eens in de pagina : er kan geen link
+// gelegd worden tussen een onbestaande knop en een functie via een event
+$("table tr button").click(verwijderRegel);
+</pre>
+
+<div class="resultaat" title="resultaat">
+	
+	
+	<button id="nieuweregel2">nieuwe regel</button>
+	<table>
+		
+	</table>
+
+
+</div></div></div></article>
+
+<!-- Voorbeeld 6-->
+<article class="voorbeeld" id='voorbeeld6'>
+					<h2><span>vb.6 : events &amp; .on()</span></h2>
+
+					<div class="verborgen">
+							<div title="code" class="code">
+<pre>
+function verwijderRegel2(){
+	$(this).parent().parent().remove();
+}
+
+$("#nieuweregel3").click(nieuweRegel3);
+$("#voorbeeld6 table").on("click","button", verwijderRegel2); 
+</pre>
+
+<div class="resultaat" title="resultaat">
+	
+	
+	<button id="nieuweregel3">nieuwe regel</button>
+	<table>
+		
+	</table>
+
+
+</div></div></div></article>
+	
+<!-- Voorbeeld 7-->
+<article class="voorbeeld" id='voorbeeld7'>
+					<h2><span>vb.7 : events &amp; .event-bubbling problemen</span></h2>
+
+					<div class="verborgen">
+							<div title="code" class="code">
+<pre>
+$("#artikel").click(function(){
+	$("#artikel h2").toggleClass("verborgen2");
+	$("#artikel p").toggleClass("verborgen2");
+});
+</pre>
+
+<div class="resultaat" title="resultaat">
+	<div class="artikel">
+		Klik hier om het weerbericht te tonen of te verbergen.
+		<h2> Weersverwachting vandaag en morgen</h2>
+		<p class="paragraaf">
+			Zonnig met af en toe wat dunnen sluierbewoling. De
+			middagtemperatuur loopt uiteen van 10 graden in het
+			Waddengebied tot 19 graden in het zuidoosten van het
+			land.
+			<a href="/weersverwachting" style='color:red;'>Bekijk de meerdaagse verwachting hier</a>
+		</p>
+	</div>
+	
+
+</div></div></div></article>
+
+<!-- Voorbeeld 8-->
+<article class="voorbeeld" id='voorbeeld8'>
+					<h2><span>vb.8 : event als parameter van een functie</span></h2>
+
+					<div class="verborgen">
+							<div title="code" class="code">
+<pre>
+$("#voorbeeld8 .artikel").on("click", function(event){
+	if(event.target === this){
+		$("#voorbeeld8 .artikel h2").toggleClass("verborgen2");
+		$("#voorbeeld8 .artikel p").toggleClass("verborgen2");
+	}
+});
+</pre>
+
+<div class="resultaat" title="resultaat">
+	<div class="artikel">
+		Klik hier om het weerbericht te tonen of te verbergen.
+		<h2> Weersverwachting vandaag en morgen</h2>
+		<p class="paragraaf">
+			Zonnig met af en toe wat dunnen sluierbewoling. De
+			middagtemperatuur loopt uiteen van 10 graden in het
+			Waddengebied tot 19 graden in het zuidoosten van het
+			land.
+			<a href="/weersverwachting" style='color:red;'>Bekijk de meerdaagse verwachting hier</a>
+		</p>
+	</div>
+	
+
+</div></div></div></article>
+
+<!-- Voorbeeld 9-->
+<article class="voorbeeld" id='voorbeeld9'>
+					<h2><span>vb.9 : keydown, keyup en keypress</span></h2>
+
+					<div class="verborgen">
+							<div title="code" class="code">
+<pre>
+function verwerkKeypress(event) {
+	var bericht="karakter:" + String.fromCharCode(event.which);
+	$("#logKeyPress").text($("#logKeyPress").text() + bericht + "\r\n");
+}
+
+function verwerkKeydown(event) {
+	var bericht="code:" + event.which;
+	$("#logKeyDown").text($("#logKeyDown").text() + bericht + "\r\n");
+}
+
+function verwerkKeyup(event) {
+	var bericht="code:" + event.which;
+	$("#logKeyUp").text($("#logKeyUp").text() + bericht + "\r\n");
+}
+
+$("#invoer").keypress(verwerkKeypress);
+$("#invoer").keydown(verwerkKeydown);
+$("#invoer").keyup(verwerkKeyup);
+</pre>
+
+<div class="resultaat" title="resultaat">
+	
+	<p>Voer een tekst in : <input type="text" id="invoer"></p>
+	<div style="float:left;">
+		Keypress : <br>
+		<textarea id="logKeyPress" rows="20" cols="30"></textarea>
+	</div>
+	<div style="float:left;">
+		Keydown : <br>
+		<textarea id="logKeyDown" rows="20" cols="30"></textarea>
+	</div>
+	<div style="float:left;">
+		Keyup : <br>
+		<textarea id="logKeyUp" rows="20" cols="30"></textarea>
+	</div>
+	
+
+</div></div></div></article>
+
+<!-- Voorbeeld 10-->
+<article class="voorbeeld" id='voorbeeld10'>
+               <h2><span>vb.10 : touchstart, touchend, click</span></h2>
+
+               <div class="verborgen">
+                     <div title="code" class="code">
+<pre>
+var startTimer, posX, posY, bericht;
+
+function resetTimer(){ startTimer= new Date().getTime(); };   
+function verwerkTouchstart(event) {
+   resetTimer();
+   posX = event.originalEvent.touches[0].pageX;
+   posY = event.originalEvent.touches[0].pageY;
+   bericht = "TS:" + startTimer +" x:" + posX + " y:" + posY;
+   $("#logTouchstart").text($("#logTouchstart").text() + bericht + "\r\n");
+}
+
+function verwerkTouchend(event) {
+   posX = event.originalEvent.changedTouches[0].pageX;
+   posY = event.originalEvent.changedTouches[0].pageY;
+   bericht = "TE:" + (new Date().getTime() - startTimer) + " x:" + posX + " y:" + posY;
+   $("#logTouchend").text($("#logTouchend").text() + bericht + "\r\n");
+}
+
+function verwerkClick(event) {
+   posX = event.originalEvent.offsetX;
+   posY = event.originalEvent.offsetY;
+   bericht = "click:" + " x:" + posX + " y:" + posY; 
+   $("#logClick").text($("#logClick").text() + bericht + "\r\n");
+}
+
+$("#klikMij").on("touchstart", verwerkTouchstart);
+$("#klikMij").on("touchend", verwerkTouchend);
+$("#klikMij").on("click", verwerkClick);
+</pre>
+
+<div class="resultaat" title="resultaat">
+   
+   <p ><img src="http://farm8.staticflickr.com/7154/6648726603_93322c885a.jpg" 
+   alt="klik mij!"
+   id="klikMij"
+   width="100%"
+   height="200px"></p>
+   <div style="float:left;">
+      Touchstart : <br>
+      <textarea id="logTouchstart" rows="20" cols="30"></textarea>
+   </div>
+   <div style="float:left;">
+      Touchend : <br>
+      <textarea id="logTouchend" rows="20" cols="30"></textarea>
+   </div>
+   <div style="float:left;">
+      Click : <br>
+      <textarea id="logClick" rows="20" cols="30"></textarea>
+   </div>
+   
+
+</div></div></div></article>
+
+
+</section></div></body></html>
