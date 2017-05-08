@@ -1,0 +1,267 @@
+<html>
+
+<head>
+    <title>Avoid the Mines !</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="AvoidtheMines.css">
+    <link rel="icon" href="icon.png">
+    <script src="jquery-3.1.1.min.js"></script>
+    <script type="text/javascript">
+        var test;
+        var mijnen;
+        var lives = 3;
+        var playerLives = ["Heart.gif", "Heart.gif", "Heart.gif"];
+        var images = ["nomine1.gif", "nomine2.gif", "nomine3.gif"];
+        var score;
+        var aantal;
+        var minesArray;
+        var randomNum;
+        var randomNum2;
+        var randomNumber;
+        var randomJoker;
+        score = 0;
+        aantal = 64;
+        var isPlaying = false;
+        clickedArray = new Array();
+
+        function aantalMines() {
+            minesArray = new Array();
+            mijnen = window.prompt("Hoeveel Mines wil je op je veld?", "");
+            if (mijnen === 0 || mijnen >= aantal) {
+                alert("Foute waarde ingevoerd, gelieve opnieuw te proberen");
+                aantalMines();
+            }
+            else {
+                isPlaying = true;
+                myHearts();
+                for (i = 1; i <= mijnen; i++) {
+                    randomNum = randomNumber(1, aantal);
+                    if ((jQuery.inArray(randomNum, minesArray)) === -1) {
+                        minesArray.push(randomNum);
+                    }
+                    else {
+                        randomNum2 = randomNumber(1, aantal);
+                        if ((jQuery.inArray(randomNum2, minesArray)) === -1) {
+                            minesArray.push(randomNum2);
+                        }
+                    }
+                }
+            }
+        }
+
+        function myScore() {
+            "use strict";
+            document.getElementById("myScore").innerHTML = "Score : " + score;
+        }
+
+        function myHearts() {
+            "use strict";
+            document.getElementById("myHearts").innerHTML = "Levens : " + lives;
+        }
+
+        function randomNumber(lowest, highest) {
+            var adjustedHigh = (highest - lowest) + 1;
+            return Math.floor(Math.random() * adjustedHigh) + parseFloat(lowest);
+        }
+
+        function retry() {
+            isPlaying = false;
+            mijnen = 0;
+            minesArray = [];
+            clickedArray = [];
+            test = null;
+            score = 0;
+            lives = 3;
+            for (i = 0; i < aantal; i++) {
+                document.images[i].src = "ssmine.gif";
+            }
+            window.status = "Spel werd gereset !";
+            alert("U kan het spel opnieuw starten!");
+        }
+
+        function showMines() {
+            for (i = 0; i <= aantal; i++) {
+                if ((jQuery.inArray(i, minesArray)) != -1) {
+                    document.images[i].src = "mine.gif";
+                }
+            }
+        }
+
+        function playGame(num) {
+            "use strict";
+            if (isPlaying && ((jQuery.inArray(num, clickedArray)) === -1)) {
+                // Anders werken de Mijnen niet.
+                myScore();
+                myHearts();
+                clickedArray.push(num);
+                //alert("clickedArray = " + clickedArray);
+                if ((jQuery.inArray(num, minesArray)) === -1) {
+                    //alert("Num = " + num + " || Mines = " + minesArray);
+                    var randomNum = Math.floor((Math.random() * 13) + 1);
+                    var randomJoker = Math.floor((Math.random() * 5) + 1);
+                }
+                else {
+                    if (lives > 0) {
+                        document.images[num].src = "mine.gif";
+                        lives--;
+                        score = score - 5;
+                        myScore();
+                        alert("Boom, Je hebt nog " + lives + " levens over!");
+                        myHearts();
+                    }
+                    else if (lives <= 0) {
+                        document.images[num].src = "mine.gif";
+                        alert("Boom, al je levens zijn opgebruikt");
+                        showMines();
+                        myHearts();
+                        isPlaying = false;
+                    }
+                }
+                if (randomNum >= 1 && randomNum <= 5) {
+                    score++;
+                    myScore();
+                    document.images[num].src = "nomine1.gif";
+                }
+                else if (randomNum >= 6 && randomNum <= 9) {
+                    score++;
+                    score++;
+                    myScore();
+                    document.images[num].src = "nomine2.gif";
+                }
+                else if (randomNum >= 10 && randomNum <= 12) {
+                    score = score + 3;
+                    myScore();
+                    document.images[num].src = "nomine3.gif";
+                }
+                else if (randomNum >= 13) {
+                    score = score + randomJoker;
+                    myScore();
+                    document.images[num].src = "joker.png";
+                }
+                else if (score > 0 && lives == 0) {
+                    alert("Uw hebt : " + score + " punten");
+                }
+            }
+        }
+
+        function info() {
+            if (typeof (Storage) !== "undefined") {
+                var myScore = document.getElementById("myScore").value;
+                var naam = document.getElementById("naam").value;
+                localStorage.myScore = score;
+                localStorage.naam = naam;
+                document.getElementById("result").innerHTML = localStorage.myScore + " " + " " + localStorage.naam;
+            }
+            else {
+                document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+            }
+        }
+    </script>
+</head>
+
+<body background="Liquicity.jpg">
+    <h3 align="center" id="AvoidtheMines">Avoid the Mines !</h3>
+    <p id="myScore">Score : </p>
+    <p id="myHearts">Hearts : </p>
+    <hr width="75%" />
+    <table border="1" bgcolor="black">
+        <tr>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(0);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(1);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(2);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(3);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(4);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(5);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(6);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(7);" /></td>
+        </tr>
+        <tr>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(8);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(9);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(10);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(11);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(12);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(13);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(14);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(15);" /></td>
+        </tr>
+        <tr>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(16);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(17);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(18);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(19);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(20);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(21);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(22);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(23);" /></td>
+        </tr>
+        <tr>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(24);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(25);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(26);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(27);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(28);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(29);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(30);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(31);" /></td>
+        </tr>
+        <tr>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(32);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(33);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(34);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(35);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(36);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(37);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(38);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(39);" /></td>
+        </tr>
+        <tr>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(40);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(41);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(42);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(43);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(44);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(45);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(46);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(47);" /></td>
+        </tr>
+        <tr>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(48);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(49);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(50);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(51);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(52);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(53);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(54);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(55);" /></td>
+        </tr>
+        <tr>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(56);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(57);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(58);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(59);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(60);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(61);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(62);" /></td>
+            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(63);" /></td>
+        </tr>
+    </table>
+    <p id="naamHighscore">Highscore: </p>
+        <div id="result"></div>
+    <center>
+        <form>
+            <p></p>
+            <button type="button" onClick='aantalMines();'>Play Game !</button>
+            <p></p>
+            <button type="button" onClick='retry();'>Opnieuw proberen?</button>
+            <p id="naamInvoeren">Voer je naam in</p>
+            <input type="text" id="naam" value="">
+            <br>
+            <p>
+                <button onclick="info();" type="button">Set Highscore</button>
+            </p>
+        </form>
+    </center>
+</body>
+
+</html>

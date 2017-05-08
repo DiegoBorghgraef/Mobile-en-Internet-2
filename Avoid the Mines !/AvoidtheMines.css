@@ -1,0 +1,62 @@
+#myScore{
+    text-align: center;
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+}
+#Heart{
+    text-align: center;
+}
+#AvoidtheMines{
+    font-family: Impact;
+    font-size: 45px;
+    text-shadow: 0 0 2px #009933;
+}
+table{
+    border-style: solid;
+    border-color: #009933;
+}
+#HeartEmpty{
+    text-align: center;
+}
+#myHearts{
+    text-align: center;
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+}
+#result{
+        text-align: center;
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+    float: right;
+    clear: right;
+    margin-right: 20em;
+}
+#naamHighscore{
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+    float: right;
+    margin-right: 20em;
+}
+#naamInvoeren{
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+    text-align: center;
+}
+table{
+    text-align: center;
+    float: left;
+    margin-left: 33em;
+    margin-bottom: 2em;
+    cursor: pointer;
+}
+form{
+    text-align: center;
+    clear: left;
+}
+.button{
+    background-color: black;
+    color: forestgreen;
+    text-shadow: 0 0 2px #009933;
+    text-decoration: none;
+    cursor: pointer;
+}
