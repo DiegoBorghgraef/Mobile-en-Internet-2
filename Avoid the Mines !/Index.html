@@ -5,51 +5,36 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="AvoidtheMines.css">
     <link rel="icon" href="icon.png">
-    <button type="button" onClick='aantalMines();' class="button">Level 1</button>
-    <button type="button" onClick='aantalMines();' class="button">Level 2</button>
-    <button type="button" onClick='aantalMines();' class="button">Level 3</button>
-    
     <script src="jquery-3.1.1.min.js"></script>
     <script type="text/javascript">
-        var test;
-        var mijnen;
-        var lives = 3;
-        var playerLives = ["Heart.gif", "Heart.gif", "Heart.gif"];
         var images = ["nomine1.gif", "nomine2.gif", "nomine3.gif"];
-        var score;
-        var aantal;
-        var minesArray;
-        var randomNum;
-        var randomNum2;
-        var randomNumber;
-        var randomJoker;
+        clickedArray = new Array();
+        var mijnen, score, aantal, minesArray, randomNum, randomNum2, randomNumber, randomJoker;
         score = 0;
         aantal = 64;
+        var lives = 3;
         var isPlaying = false;
-        clickedArray = new Array();
-        
 
-
-        function aantalMines() {
+        function aantalMines(mijnen) {
             minesArray = new Array();
-            mijnen = window.prompt("Hoeveel Mines wil je op je veld?", "");
-            if (mijnen == 0 || mijnen >= aantal) {
-                alert("Foute waarde ingevoerd, gelieve opnieuw te proberen");
-                aantalMines();
-            }
-            else {
-                isPlaying = true;
-                myHearts();
-                for (i = 1; i <= mijnen; i++) {
-                    randomNum = randomNumber(1, aantal);
-                    if ((jQuery.inArray(randomNum, minesArray)) === -1) {
-                        minesArray.push(randomNum);
-                    }
-                    else {
-                        randomNum2 = randomNumber(1, aantal);
-                        if ((jQuery.inArray(randomNum2, minesArray)) === -1) {
-                            minesArray.push(randomNum2);
-                        }
+            
+            //mijnen = window.prompt("Hoeveel Mines wil je op je veld?", "");
+            //if (mijnen == 0 || mijnen >= aantal) {
+            //    alert("Foute waarde ingevoerd, gelieve opnieuw te proberen");
+            //    aantalMines();
+            //}
+            //else { 
+            isPlaying = true;
+            myHearts();
+            for (i = 1; i <= mijnen; i++) {
+                randomNum = randomNumber(1, aantal);
+                if ((jQuery.inArray(randomNum, minesArray)) === -1) {
+                    minesArray.push(randomNum);
+                }
+                else {
+                    randomNum2 = randomNumber(1, aantal);
+                    if ((jQuery.inArray(randomNum2, minesArray)) === -1) {
+                        minesArray.push(randomNum2);
                     }
                 }
             }
@@ -75,11 +60,10 @@
             mijnen = 0;
             minesArray = [];
             clickedArray = [];
-            test = null;
             score = 0;
             lives = 3;
             for (i = 0; i < aantal; i++) {
-                document.images[i].src = "ssmine.gif";
+                document.images[i].src = "wood.png";
             }
             window.status = "Spel werd gereset !";
             alert("U kan het spel opnieuw starten!");
@@ -94,7 +78,6 @@
         }
 
         function playGame(num) {
-            "use strict";
             if (isPlaying && ((jQuery.inArray(num, clickedArray)) === -1)) {
                 // Anders werken de Mijnen niet.
                 myScore();
@@ -112,7 +95,7 @@
                         lives--;
                         score = score - 5;
                         myScore();
-                        alert("Boom, Je hebt nog " + lives + " levens over!");
+                        //alert("Boom, Je hebt nog " + lives + " levens over!");
                         myHearts();
                     }
                     else if (lives <= 0) {
@@ -145,7 +128,7 @@
                     document.images[num].src = "joker.png";
                 }
                 else if (score > 0 && lives == 0) {
-                    alert("Uw hebt : " + score + " punten");
+                    //alert("Uw hebt : " + score + " punten");
                 }
             }
         }
@@ -172,98 +155,102 @@
     <hr width="75%" />
     <table border="1" bgcolor="black">
         <tr>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(0);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(1);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(2);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(3);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(4);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(5);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(6);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(7);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(0);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(1);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(2);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(3);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(4);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(5);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(6);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(7);" /></td>
         </tr>
         <tr>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(8);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(9);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(10);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(11);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(12);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(13);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(14);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(15);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(8);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(9);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(10);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(11);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(12);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(13);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(14);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(15);" /></td>
         </tr>
         <tr>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(16);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(17);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(18);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(19);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(20);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(21);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(22);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(23);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(16);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(17);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(18);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(19);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(20);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(21);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(22);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(23);" /></td>
         </tr>
         <tr>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(24);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(25);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(26);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(27);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(28);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(29);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(30);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(31);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(24);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(25);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(26);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(27);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(28);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(29);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(30);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(31);" /></td>
         </tr>
         <tr>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(32);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(33);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(34);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(35);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(36);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(37);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(38);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(39);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(32);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(33);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(34);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(35);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(36);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(37);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(38);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(39);" /></td>
         </tr>
         <tr>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(40);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(41);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(42);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(43);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(44);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(45);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(46);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(47);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(40);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(41);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(42);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(43);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(44);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(45);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(46);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(47);" /></td>
         </tr>
         <tr>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(48);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(49);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(50);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(51);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(52);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(53);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(54);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(55);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(48);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(49);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(50);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(51);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(52);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(53);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(54);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(55);" /></td>
         </tr>
         <tr>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(56);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(57);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(58);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(59);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(60);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(61);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(62);" /></td>
-            <td><img src="ssmine.gif" width="30" height="30" onClick="playGame(63);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(56);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(57);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(58);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(59);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(60);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(61);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(62);" /></td>
+            <td><img src="wood.png" width="30" height="30" onClick="playGame(63);" /></td>
         </tr>
     </table>
     <p id="naamHighscore">Highscore: </p>
-        <div id="result"></div>
+    <div id="result"></div>
     <center>
         <form>
-            <button type="button" onClick='aantalMines();' class="button">Play Game !</button>
+            <p id="naamInvoeren">Kies de moeilijkheid: </p>
+            <button type="button" onClick='aantalMines(10);' class="button">Beginner</button>
+            <button type="button" onClick='aantalMines(15);' class="button">Medium </button>
+            <button type="button" onClick='aantalMines(20);' class="button">Hard</button>
+            <button type="button" onClick='aantalMines();' class="button">Custom</button>
             <p></p>
             <button type="button" onClick='retry();' class="button">Opnieuw proberen?</button>
             <p id="naamInvoeren">Voer je naam in</p>
             <input type="text" id="naam" value="">
             <br>
             <p>
-                <button onclick="info();" type="button" class="button" >Set Highscore</button>
+                <button onclick="info();" type="button" class="button">Set Highscore</button>
             </p>
         </form>
     </center>
