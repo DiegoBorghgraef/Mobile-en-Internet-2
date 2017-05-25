@@ -1,0 +1,811 @@
+#myScore{
+    text-align: center;
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+}
+#AvoidtheMines{
+    font-family: Impact;
+    font-size: 45px;
+    text-shadow: 0 0 2px #009933;
+}
+table{
+    border-style: solid;
+    border-color: #009933;
+}
+#HeartEmpty{
+    text-align: center;
+}
+#myHearts{
+    text-align: center;
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+}
+#naamInvoeren{
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+    float: left;
+    margin-left: 20px;
+}
+#result{
+    text-align: center;
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+    float: left;
+    margin-left: 20px;
+    
+}
+table{
+    text-align: center;
+    float: left;
+    margin-bottom: 2em;
+    cursor: pointer;
+    margin-left: 20px;
+}
+form{
+    text-align: center;
+    float: left;
+}
+.button{
+    text-align: center;
+}
+#buttonLayout{
+    background-color: black;
+    color: forestgreen;
+    text-shadow: 0 0 2px #009933;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    margin-left: 640px;
+    width: 150px;
+}
+#buttonLayout1{
+    background-color: black;
+    color: orangered;
+    text-shadow: 0 0 2px #009933;
+    text-decoration: none;
+    cursor: pointer;
+    margin-left: 640px;
+    width: 150px;
+}
+#buttonLayout2{
+    background-color: black;
+    color: red;
+    text-shadow: 0 0 2px #009933;
+    text-decoration: none;
+    cursor: pointer;
+    margin-left: 640px;
+    width: 150px;
+}
+#buttonLayout3{
+    background-color: black;
+    color: dodgerblue;
+    text-shadow: 0 0 2px #009933;
+    text-decoration: none;
+    cursor: pointer;
+    margin-left: 640px;
+    width: 150px;
+
+}
+#retryButton{
+    background-color: black;
+    color: yellow;
+    text-shadow: 0 0 2px #009933;
+    text-decoration: none;
+    cursor: pointer;
+    width: 150px;
+    margin-left: 640px;
+}
+.Text{
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+    text-align: center;
+    margin-left: 640px;
+      
+}
+.moreInformation{
+    clear:left;
+}
+@media screen and (max-width: 1700px) {
+    #buttonLayout{
+        margin-left:520px;
+    }
+    #buttonLayout2{
+        margin-left:520px;
+    }
+    #buttonLayout3{
+        margin-left:520px;
+    }
+    #buttonLayout1{
+        margin-left:520px;
+    }
+    #retryButton{
+        margin-left:520px;
+    }
+    .Text{
+        margin-left:520px;
+    }
+}
+@media screen and (max-width: 1650px) {
+    #buttonLayout{
+        margin-left:500px;
+    }
+    #buttonLayout2{
+        margin-left:500px;
+    }
+    #buttonLayout3{
+        margin-left:500px;
+    }
+    #buttonLayout1{
+        margin-left:500px;
+    }
+    #retryButton{
+        margin-left:500px;
+    }
+    .Text{
+        margin-left:500px;
+    }
+}
+@media screen and (max-width: 1600px) {
+    #buttonLayout{
+        margin-left:480px;
+    }
+    #buttonLayout2{
+        margin-left:480px;
+    }
+    #buttonLayout3{
+        margin-left:480px;
+    }
+    #buttonLayout1{
+        margin-left:480px;
+    }
+    #retryButton{
+        margin-left:480px;
+    }
+    .Text{
+        margin-left:480px;
+    }
+}
+@media screen and (max-width: 1550px) {
+    #buttonLayout{
+        margin-left:460px;
+    }
+    #buttonLayout2{
+        margin-left:460px;
+    }
+    #buttonLayout3{
+        margin-left:460px;
+    }
+    #buttonLayout1{
+        margin-left:460px;
+    }
+    #retryButton{
+        margin-left:460px;
+    }
+    .Text{
+        margin-left:460px;
+    }
+}
+@media screen and (max-width: 1500px) {
+    #buttonLayout{
+        margin-left:440px;
+    }
+    #buttonLayout2{
+        margin-left:440px;
+    }
+    #buttonLayout3{
+        margin-left:440px;
+    }
+    #buttonLayout1{
+        margin-left:440px;
+    }
+    #retryButton{
+        margin-left:440px;
+    }
+    .Text{
+        margin-left:440px;
+    }
+}
+@media screen and (max-width: 1450px) {
+    #buttonLayout{
+        margin-left:420px;
+    }
+    #buttonLayout2{
+        margin-left:420px;
+    }
+    #buttonLayout3{
+        margin-left:420px;
+    }
+    #buttonLayout1{
+        margin-left:420px;
+    }
+    #retryButton{
+        margin-left:420px;
+    }
+    .Text{
+        margin-left:420px;
+    }
+}
+@media screen and (max-width: 1400px) {
+    #buttonLayout{
+        margin-left:400px;
+    }
+    #buttonLayout2{
+        margin-left:400px;
+    }
+    #buttonLayout3{
+        margin-left:400px;
+    }
+    #buttonLayout1{
+        margin-left:400px;
+    }
+    #retryButton{
+        margin-left:400px;
+    }
+    .Text{
+        margin-left:400px;
+    }
+}
+@media screen and (max-width: 1350px) {
+    #buttonLayout{
+        margin-left:380px;
+    }
+    #buttonLayout2{
+        margin-left:380px;
+    }
+    #buttonLayout3{
+        margin-left:380px;
+    }
+    #buttonLayout1{
+        margin-left:380px;
+    }
+    #retryButton{
+        margin-left:380px;
+    }
+    .Text{
+        margin-left:380px;
+    }
+}
+@media screen and (max-width: 1300px) {
+    #buttonLayout{
+        margin-left:360px;
+    }
+    #buttonLayout2{
+        margin-left:360px;
+    }
+    #buttonLayout3{
+        margin-left:360px;
+    }
+    #buttonLayout1{
+        margin-left:360px;
+    }
+    #retryButton{
+        margin-left:360px;
+    }
+    .Text{
+        margin-left:360px;
+    }
+}
+@media screen and (max-width: 1250px) {
+    #buttonLayout{
+        margin-left:340px;
+    }
+    #buttonLayout2{
+        margin-left:340px;
+    }
+    #buttonLayout3{
+        margin-left:340px;
+    }
+    #buttonLayout1{
+        margin-left:340px;
+    }
+    #retryButton{
+        margin-left:340px;
+    }
+    .Text{
+        margin-left:340px;
+    }
+}
+@media screen and (max-width: 1200px) {
+    #buttonLayout{
+        margin-left:320px;
+    }
+    #buttonLayout2{
+        margin-left:320px;
+    }
+    #buttonLayout3{
+        margin-left:320px;
+    }
+    #buttonLayout1{
+        margin-left:320px;
+    }
+    #retryButton{
+        margin-left:320px;
+    }
+    .Text{
+        margin-left:320px;
+    }
+}
+@media screen and (max-width: 1150px) {
+    #buttonLayout{
+        margin-left:300px;
+    }
+    #buttonLayout2{
+        margin-left:300px;
+    }
+    #buttonLayout3{
+        margin-left:300px;
+    }
+    #buttonLayout1{
+        margin-left:300px;
+    }
+    #retryButton{
+        margin-left:300px;
+    }
+    .Text{
+        margin-left:300px;
+    }
+}
+@media screen and (max-width: 1100px) {
+    #buttonLayout{
+        margin-left:280px;
+    }
+    #buttonLayout2{
+        margin-left:280px;
+    }
+    #buttonLayout3{
+        margin-left:280px;
+    }
+    #buttonLayout1{
+        margin-left:280px;
+    }
+    #retryButton{
+        margin-left:280px;
+    }
+    .Text{
+        margin-left:280px;
+    }
+}
+@media screen and (max-width: 1050px) {
+    #buttonLayout{
+        margin-left:260px;
+    }
+    #buttonLayout2{
+        margin-left:260px;
+    }
+    #buttonLayout3{
+        margin-left:260px;
+    }
+    #buttonLayout1{
+        margin-left:260px;
+    }
+    #retryButton{
+        margin-left:260px;
+    }
+    .Text{
+        margin-left:260px;
+    }
+}
+@media screen and (max-width: 1000px) {
+    #buttonLayout{
+        margin-left:240px;
+    }
+    #buttonLayout2{
+        margin-left:240px;
+    }
+    #buttonLayout3{
+        margin-left:240px;
+    }
+    #buttonLayout1{
+        margin-left:240px;
+    }
+    #retryButton{
+        margin-left:240px;
+    }
+    .Text{
+        margin-left:240px;
+    }
+}
+@media screen and (max-width: 950px) {
+    #buttonLayout{
+        margin-left:220px;
+    }
+    #buttonLayout2{
+        margin-left:220px;
+    }
+    #buttonLayout3{
+        margin-left:220px;
+    }
+    #buttonLayout1{
+        margin-left:220px;
+    }
+    #retryButton{
+        margin-left:220px;
+    }
+    .Text{
+        margin-left:220px;
+    }
+}
+@media screen and (max-width: 950px) {
+    #buttonLayout{
+        margin-left:200px;
+    }
+    #buttonLayout2{
+        margin-left:200px;
+    }
+    #buttonLayout3{
+        margin-left:200px;
+    }
+    #buttonLayout1{
+        margin-left:200px;
+    }
+    #retryButton{
+        margin-left:200px;
+    }
+    .Text{
+        margin-left:200px;
+    }
+}
+@media screen and (max-width: 900px) {
+    #buttonLayout{
+        margin-left:180px;
+    }
+    #buttonLayout2{
+        margin-left:180px;
+    }
+    #buttonLayout3{
+        margin-left:180px;
+    }
+    #buttonLayout1{
+        margin-left:180px;
+    }
+    #retryButton{
+        margin-left:180px;
+    }
+    .Text{
+        margin-left:180px;
+    }
+}
+@media screen and (max-width: 850px) {
+    #buttonLayout{
+        margin-left:160px;
+    }
+    #buttonLayout2{
+        margin-left:160px;
+    }
+    #buttonLayout3{
+        margin-left:160px;
+    }
+    #buttonLayout1{
+        margin-left:160px;
+    }
+    #retryButton{
+        margin-left:160px;
+    }
+    .Text{
+        margin-left:160px;
+    }
+}
+@media screen and (max-width: 800px) {
+    #buttonLayout{
+        margin-left:80px;
+    }
+    #buttonLayout2{
+        margin-left:80px;
+    }
+    #buttonLayout3{
+        margin-left:80px;
+    }
+    #buttonLayout1{
+        margin-left:80px;
+    }
+    #retryButton{
+        margin-left:80px;
+    }
+    .Text{
+        margin-left:80px;
+    }
+    #naamInvoeren{
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+    float: left;
+    clear: left;  
+    margin-left: 280px;
+    }
+    #result{
+    text-align: center;
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+    float: left;
+    margin-left: 20px;
+    
+}
+}
+@media screen and (max-width: 750px) {
+    #buttonLayout{
+        margin-left:60px;
+    }
+    #buttonLayout2{
+        margin-left:60px;
+    }
+    #buttonLayout3{
+        margin-left:60px;
+    }
+    #buttonLayout1{
+        margin-left:60px;
+    }
+    #retryButton{
+        margin-left:60px;
+    }
+    .Text{
+        margin-left:60px;
+    }
+    #naamInvoeren{
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+    float: left;
+    clear: left;  
+    margin-left: 260px;
+    }
+    #result{
+    text-align: center;
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+    float: left;
+    margin-left: 20px;
+    
+}
+}
+@media screen and (max-width: 700px) {
+    #buttonLayout{
+        margin-left:40px;
+    }
+    #buttonLayout2{
+        margin-left:40px;
+    }
+    #buttonLayout3{
+        margin-left:40px;
+    }
+    #buttonLayout1{
+        margin-left:40px;
+    }
+    #retryButton{
+        margin-left:40px;
+    }
+    .Text{
+        margin-left:40px;
+    }
+    #naamInvoeren{
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+    float: left;
+    clear: left;  
+    margin-left: 240px;
+    }
+    #result{
+    text-align: center;
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+    float: left;
+    margin-left: 20px;
+    
+}
+}
+@media screen and (max-width: 650px) {
+    #buttonLayout{
+        margin-left:20px;
+    }
+    #buttonLayout2{
+        margin-left:20px;
+    }
+    #buttonLayout3{
+        margin-left:20px;
+    }
+    #buttonLayout1{
+        margin-left:20px;
+    }
+    #retryButton{
+        margin-left:20px;
+    }
+    .Text{
+        margin-left:20px;
+    }
+    #naamInvoeren{
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+    float: left;
+    clear: left;  
+    margin-left: 220px;
+    }
+    #result{
+    text-align: center;
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+    float: left;
+    margin-left: 20px;
+    
+}
+}
+@media screen and (max-width: 600px) {
+    #buttonLayout{
+        margin-left:60px;
+    }
+    #buttonLayout2{
+        margin-left:60px;
+    }
+    #buttonLayout3{
+        margin-left:60px;
+    }
+    #buttonLayout1{
+        margin-left:60px;
+    }
+    #retryButton{
+        margin-left:60px;
+    }
+    .Text{
+        margin-left:60px;
+    }
+    #naamInvoeren{
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+    float: left;
+    clear: left;  
+    margin-left: 200px;
+    }
+    #result{
+    text-align: center;
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+    float: left;
+    margin-left: 20px;
+    
+}
+}
+@media screen and (max-width: 550px) {
+    #buttonLayout{
+        margin-left:40px;
+    }
+    #buttonLayout2{
+        margin-left:40px;
+    }
+    #buttonLayout3{
+        margin-left:40px;
+    }
+    #buttonLayout1{
+        margin-left:40px;
+    }
+    #retryButton{
+        margin-left:40px;
+    }
+    .Text{
+        margin-left:40px;
+    }
+    #naamInvoeren{
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+    float: left;
+    clear: left;  
+    margin-left: 180px;
+    }
+    #result{
+    text-align: center;
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+    float: left;
+    margin-left: 20px;
+    
+}
+}
+@media screen and (max-width: 500px) {
+    #buttonLayout{
+        margin-left:150px;
+    }
+    #buttonLayout2{
+        margin-left:150px;
+    }
+    #buttonLayout3{
+        margin-left:150px;
+    }
+    #buttonLayout1{
+        margin-left:150px;
+    }
+    #retryButton{
+        margin-left:150px;
+    }
+    .Text{
+        margin-left:150px;
+    }
+     #naamInvoeren{
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+    float: left;
+    clear: left;  
+    margin-left: 80px;
+    }
+    #result{
+    text-align: center;
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+    float: left;
+    margin-left: 80px;
+    }
+    table{
+        margin-left: 80px;
+    }
+}
+@media screen and (max-width: 370px) {
+    #buttonLayout{
+        margin-left:120px;
+    }
+    #buttonLayout2{
+        margin-left:120px;
+    }
+    #buttonLayout3{
+        margin-left:120px;
+    }
+    #buttonLayout1{
+        margin-left:120px;
+    }
+    #retryButton{
+        margin-left:120px;
+    }
+    .Text{
+        margin-left:150px;
+    }
+     #naamInvoeren{
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+    float: left;
+    clear: left;  
+    margin-left: 80px;
+    }
+    #result{
+    text-align: center;
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+    float: left;
+    margin-left: 80px;
+    margin-bottom: 20px;
+    }
+    table{
+        margin-left: 20px;
+    }
+}
+@media screen and (max-width: 320px) {
+    #buttonLayout{
+        margin-left:80px;
+    }
+    #buttonLayout2{
+        margin-left:80px;
+    }
+    #buttonLayout3{
+        margin-left:80px;
+    }
+    #buttonLayout1{
+        margin-left:80px;
+    }
+    #retryButton{
+        margin-left:80px;
+    }
+    .Text{
+        margin-left:80px;
+    }
+     #naamInvoeren{
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+    float: left;
+    clear: left;  
+    margin-left: 120px;
+    }
+    #result{
+    text-align: center;
+    font-family: Impact;
+    text-shadow: 0 0 2px #009933;
+    float: left;
+    margin-left: 80px;
+    }
+    table{
+        margin-left: 10px;
+    }
+    
+}
+
