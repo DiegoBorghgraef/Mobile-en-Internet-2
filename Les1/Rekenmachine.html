@@ -100,6 +100,37 @@
         document.write('De vermingvuldeging is: ' + maal(5, 5) + '<br>')
         document.write('De deling is: ' + delen(5, 5) + '<br>')
     </script>
+    <script>
+        var rekenen = new Rekenmachine();
+        rekenen.waarde1 = 5;
+        rekenen.waarde2 = 10;
+        var uitkomst = rekenen.Optellen();	
+        document.write("Optellen : " + uitkomst + "<br>");
+        var uitkomst = rekenen.Vermenigvuldigen();
+        document.write("Vermenigvuldigen " + uitkomst + "<br>")
+        var uitkomst = rekenen.Delen();
+        document.write("Delen " + uitkomst + "<br>")
+        var uitkomst = rekenen.Verminderen();
+        document.write("Verminderen " + uitkomst + "<br>")
+                				
+	    function Rekenmachine(){
+	    this.waarde1 =0;
+	    this.waarde2 =0;
+							
+	    this.Optellen = function(){
+		return this.waarde1 + this.waarde2;
+	    }
+	    this.Vermenigvuldigen = function(){
+		return this.waarde1 * this.waarde2;
+	    }
+	    this.Delen = function(){
+		return this.waarde1 / this.waarde2;
+	    }
+	    this.Verminderen = function(){
+		return this.waarde1 - this.waarde2;
+	    }
+    }       
+    </script>
 </fieldset>
 
 </html>
