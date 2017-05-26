@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+				<meta charset="utf-8">
+				<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<title>les5</title>
+				<script src="jquery-3.1.1.js"></script>
+				<style>
+	
+					.Vet{
+					font-weight: bold;
+					}
+	</style>
+</head>
+
+<body>
+   <ul id="plaats">
+	<li>Brussel</li>
+	<li>Gent</li>
+	<li>Antwerpen</li>
+	<li>Brugge</li>
+	<li>Grimbergen</li>
+</ul>
+
+ <form>
+  Plaatsnaam: <input type="text"  id="invoer"> 
+            <br>
+        <input type="submit" value="Invoeren" id="button">
+	</form>
+<script>
+	var gekozen = $("#plaats li");
+    $(gekozen).on("click", function () {
+        $(this).toggleClass("Vet");    });
+	
+  $("#button").on("click", function (Event) {
+	  var tekst = $('#invoer').val()
+        $("#plaats").append('<li>' + tekst + '</li>');	
+	     Event.preventDefault();
+
+    });
+	</script>			
+</body>
+</html>
