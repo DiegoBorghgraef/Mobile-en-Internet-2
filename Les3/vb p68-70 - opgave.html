@@ -45,8 +45,21 @@
     </div>
 
     <footer>
-     <p>&copy; Copyright  by Steven</p>
     </footer>
   </div>
 </body>
+  <script> 
+    $(function(){
+		 $("body>div>div>ul>li.actief").prev().css("color", "#aaa");
+		 
+		 $("ul ul>li.actief").prevAll().css("color","red");
+		 
+		 $("body>div>div>ul>li.actief").children().css("color","green");
+		 
+		 $("body>div>div>ul>li.actief").siblings().css("text-decoration","underline");
+		  
+		  $("ul ul>li.actief").nextAll().css("font-weight","bold");
+		 
+	  });
+	</script>
 </html>
