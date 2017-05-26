@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>foto's zoeken</title>
+    <script type="text/javascript" src="jquery-3.1.1.js"></script>
+</head>
+
+<body>
+    <h1>jQuerry - de Basis - Foto's</h1>
+    <p>bij meerdere zoektermen gebruik een komma(,) als scheidingsteken</p>
+    <p>Zoekterm
+        <input type="text" id="zoekterm" />
+        <input type="button" value="zoek" id="zoeken">
+        <br> <strong id="titel"></strong> </p>
+    <div id="fotos"> </div>
+    <p>
+        <a id="bron" href=""></a>
+    </p>
+    <table> </table>
+    <script>
+        $('#zoeken').click(function () {
+            var mydata;
+            var zoekterm = $("#zoekterm").val();
+            var result = zoekterm.split(',')
+            console.log(result);
+            var flickrUrl = "https://www.flickr.com/services/feeds/photos_public.gne?format=json&tags=";
+            $.ajax({
+                dataType: "Json"
+                , type: "GET"
+                , url: flickrUrl + result + "&jsoncallback=?"
+            , }).done(function (data) {
+                mydata = data;
+                verwerkJSON(mydata);
+            }).fail(function () {
+                alert("fail");
+            })
+        });
+
+        function verwerkJSON(response) {
+            $('#fotos').html("");
+            console.log(response);
+            for (var i = 0; i < response.items.length; i++) {
+                var foto = response.items[i];
+                console.log(foto);
+                var html = "<div class='frame'><div class='image'><a href='" + foto.link + "'><img src='" + foto.media.m + "' alt='" + foto.title + "'/></a></div><h2>" + foto.title + "</h2</div>";
+                $('#fotos').append(html)
+            }
+            $("#bron").attr("href", response.link).text("Bron: Flickr");
+            $("#titel").text(response.title);
+        }
+    </script>
+</body>
+
+</html>
