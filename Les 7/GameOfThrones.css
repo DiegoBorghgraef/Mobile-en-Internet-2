@@ -1,0 +1,35 @@
+body {
+    background: grey;
+}
+
+#wrapper {
+    width: 100%;
+    overflow: hidden;
+}
+
+#summary {
+    width: 60%;
+    float: left;
+    font-size: 1.75em;
+}
+
+#figure {
+    float: left;
+}
+
+#ratings {
+    float: left;
+    font-size: 1em;
+}
+
+#episodes {
+    max-width: 80vw;
+    margin: auto;
+    padding: 0.1em;
+    text-align: center;
+}
+
+#content {
+    display: none;
+    background-color: white;
+}

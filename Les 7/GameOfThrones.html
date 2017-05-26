@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+				<meta charset="utf-8">
+				<meta name="viewport" content="width=device-width, initial-scale=1.0">
+                 <link rel="stylesheet" type="text/css" href="GameOfThrones.css">
+				<title>Game of thrones</title>
+				<script src="jquery-3.1.1.js"></script>
+				<script type="text/javascript">
+					"use strict"
+					var dataserie,dataseries,data,episodeinfo,episodetitel,episodesummary,episodeimg;		
+					
+					
+					$(function () {
+				// de JSON data ophalen
+					$.ajax({
+					type : "GET",
+					url : "http://api.tvmaze.com/singlesearch/shows?q=game-of-thrones",
+					dataType : 'json'
+				}).done(function (response){
+						
+					
+						dataserie = response;
+						console.log(dataserie);
+						//text
+						$("h1").text(dataserie.name);
+						// html
+						$("#summary").html(dataserie.summary);
+						// txt
+						
+						// fotos
+						$("figure").html("<img src='" + dataserie.image.medium + "'/>")
+						
+						$("figure").append("<figcaption>" + "ratings: " + dataserie.rating.average+ "</figcaption>")
+					})
+					
+				$("#link2").click(function(){
+					console.log("alee");
+					$.ajax({
+					type : "GET",
+					url : "http://api.tvmaze.com/singlesearch/shows?q=game-of-thrones&embed=episodes",
+					dataType : 'json'
+				}).done(function (response){
+						console.log(response);
+						data = response;
+						console.log(data._embedded.episodes.length);
+						for (var i = 0 ; i< data._embedded.episodes.length -1 ;i++){
+						episodetitel =data._embedded.episodes[i].name;
+						episodesummary = data._embedded.episodes[i].summary;
+							if(i <data._embedded.episodes.length -1){
+								episodeimg=data._embedded.episodes[i].image.medium;
+								
+							}
+							console.log(episodetitel);
+							episodeinfo += "<div>" + "<h2>" + episodetitel + "</h2>" + "<div id='content'>" +  episodesummary + "<img src='" + episodeimg + "'/>" + "</div>" + "</div>";
+						}
+						$("#episodes").html(episodeinfo);
+						  $("h2").click(function () {
+                    if ($(this).next().is(":hidden")) {
+                        $(this).next().slideDown("fast");
+                    }
+                    else {
+                        $(this).next().hide();
+                    }
+                });
+					})	
+				});
+			
+	});		
+	</script>
+</head>
+
+<body>
+				
+				<header>
+					<h1></h1>
+				</header>
+				<div id="wrapper">
+				<article id ="summary">
+					<p></p>
+				</article>
+				<figure></figure>
+				</div>
+				<input type="button" value="show episodes" id="link2">
+				<div id="episodes"></div>
+				
+			
+			
+</body>
+</html>
