@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>Avoid The Mines !</title>
+    <!-- Path to Framework7 Library CSS-->
+    <link rel="stylesheet" href="css/framework7.ios.min.css">
+    <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+    <!-- Path to your custom app styles-->
+      <title>Avoid the Mines !</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="AvoidtheMines.css">
+    <link rel="icon" href="/img/icon.png">
+    <link rel="stylesheet" href="css/my-app.css">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/img/bombicon.png" />
+  </head>
+  <body>
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-reveal">
+      <div class="content-block">
+        <p>Menu</p>
+          <p><a href="index.html">Avoid The Mines! Game </a></p>  
+          <p><a href="index.html">Highscore </a></p> 
+        <p><a href="about.html">About</a></p>
+      </div>
+    </div>
+    <div class="views">
+      <div class="view view-main">
+        <!-- Top Navbar-->
+        <div class="navbar">
+          <div class="navbar-inner">
+            <!-- We have home navbar without left link-->
+            <div class="center sliding" id="Title">Avoid the Mines !</div>
+            <div class="right">
+              <!-- Right link contains only icon - additional "icon-only" class--><a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
+            </div>
+          </div>
+        </div>
+        <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+        <div class="pages navbar-through toolbar-through">
+          <!-- Page, data-page contains page name-->
+          <div data-page="index" class="page">
+            <!-- Scrollable page content-->
+            <div class="page-content">
+              <div class="content-block-title">Welcome to Avoid The Mines !</div>
+              <div class="content-block">
+                <div class="content-block-inner">
+                  <p style="text-decoration: underline; text-align: center;">How to play?</p>
+                    <p style="text-align:center;"><b>Rules?</b> To start a game you have to choose a difficutly. <b style="color: green;">Beginner</b> gives you 10 mines, <b style="color:orange;">Medium</b> gives you 15 mines, <b style="color: red;">Hard</b>  gives you 20 mines and I you want extra challenges you can try <b style="color: blue">Custom</b> , which gives you the option to choose the amount of mines you want! Try to collect the most points possible to get on top of the leaderboard! </p>
+                </div>
+              </div>
+
+    <script src="jquery-3.1.1.min.js"></script>
+    <script type="text/javascript">
+        "use strict";
+        /*global jQuery, alert*/
+        /*jslint plusplus: true */
+        
+        var images = ["/img/nomine1.gif", "/img/nomine2.gif", "/img/nomine3.gif"];
+        var clickedArray = [];
+        
+        var mijnen, score, aantal, minesArray, randomNum, randomNum2, randomNumber, randomJoker, naam, i, console, openDatabase, $, prompt, msg_difficulty, msg_question_difficultySelect;
+        
+        var score = 0;
+        var aantal = 64;
+        var lives = 3;
+        
+        var isPlaying = false;
+                      
+        var msg_question_name = "";                                 // blank -> userInput is clear (naam)
+        
+        var msg_customDiff = "Please write the number of mines you want to play with: ";
+        var msg_question_numMines = "1 - 63";
+
+        // not to be used, displays 0 because we've just defined score to a default of 0... :P let's do it the dirty way then... 
+        //var msg_alt_saveScoreName = "You've made an awesome score of " + score + ", what's your awesome name ?";
+        
+        // here's the dirty way, lol
+        var msg_alt_saveScoreName_1 = "You've made an awesome score of ";
+        var msg_alt_saveScoreName_2 = ", what's your awesome name ?";
+
+        var msg_noDifficultyMatch = "Please write a correct number of mines. (Range: 1 to 63)";
+
+        var name;
+        var difficulty;
+
+        var isOnMobile = false;
+
+        // Display functions
+        function myHearts() {
+            document.getElementById("myHearts").innerHTML = "Levens : " + lives;
+        }
+        function myScore() {
+            document.getElementById("myScore").innerHTML = "Score : " + score;
+        }
+        // onEnd function
+        function showMines() {
+            for (i = 0; i <= aantal; i++) {
+                if ((jQuery.inArray(i, minesArray)) !== -1) {
+                    document.images[i].src = "/img/mine.gif";
+                }
+            }
+        }
+        // onInit, onEnd function
+        function refreshHS() {
+
+            var s_highscore = "", s_names = [];
+
+            var db = openDatabase('mydb', '1.0', 'AtM_highscores', 0.1 * 1024 * 1024);
+            db.transaction(function (tx) {
+                tx.executeSql('SELECT * FROM dev_HS order by score desc', [], function (tx, results) {
+                    var len = results.rows.length;
+
+                    for (i = 0; i < len; i += 1) {
+                        if ((jQuery.inArray(results.rows.item(i).naam, s_names)) === -1) {
+                            s_highscore += "Naam: " + results.rows.item(i).naam + "    ||    Score: " + results.rows.item(i).score + "<br>";
+                            document.getElementById("result").innerHTML = s_highscore;
+
+                            s_names.push(results.rows.item(i).naam);
+                        }
+                    }
+                }, null);
+            });
+        }
+        
+           // onEnd function
+        function saveScore(naam, score) {
+            
+            if (naam === null) {
+                naam = "Unknown";
+                console.log("Name wasn't properly set... Defining it to 'Unknown'.");
+            }
+
+            var db = openDatabase('mydb', '1.0', 'AtM_highscores', 0.1 * 1024 * 1024);
+            db.transaction(function (tx) {
+                tx.executeSql('INSERT INTO dev_HS (naam,score) VALUES (?, ?)', [naam, score], function (tx, results) {}, function (tx, error) {});
+            });
+            
+            refreshHS();
+        }
+
+        // onInit main function
+        $(document).ready(function () {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                isOnMobile = true;
+            }
+            console.log("isOnMobile = " + isOnMobile);
+
+            
+            var db = openDatabase('mydb', '1.0', 'AtM_highscores', 0.1 * 1024 * 1024);
+            db.transaction(function (tx) {
+                tx.executeSql('CREATE TABLE IF NOT EXISTS dev_HS (naam, score)');
+            });
+            refreshHS();
+        });
+
+
+
+
+        // Main game function
+        function playGame(num) {
+            if (isPlaying && ((jQuery.inArray(num, clickedArray)) === -1)) {
+                // Anders werken de Mijnen niet.
+                myScore();
+                myHearts();
+                clickedArray.push(num);
+
+                if ((jQuery.inArray(num, minesArray)) === -1) {
+                    //alert("Num = " + num + " || Mines = " + minesArray);
+                    randomNum = Math.floor((Math.random() * 13) + 1);
+                    randomJoker = Math.floor((Math.random() * 5) + 1);
+                    if (randomNum >= 1 && randomNum <= 5) {
+                        score++;
+                        myScore();
+                        document.images[num].src = "/img/nomine1.gif";
+                    } else if (randomNum >= 6 && randomNum <= 9) {
+                        score++;
+                        score++;
+                        myScore();
+                        document.images[num].src = "/img/nomine2.gif";
+                    } else if (randomNum >= 10 && randomNum <= 12) {
+                        score = score + 3;
+                        myScore();
+                        document.images[num].src = "/img/nomine3.gif";
+                    } else if (randomNum >= 13) {
+                        score = score + randomJoker;
+                        myScore();
+                        document.images[num].src = "/img/joker.png";
+                    } else if (score > 0 && lives === 0) {
+                        alert("Uw hebt : " + score + " punten");
+                    }
+                } else {
+                    if (lives > 0) {
+                        document.images[num].src = "/img/mine.gif";
+                        lives--;
+                        score = score - 5;
+                        myScore();
+                        alert("Boom, Je hebt nog " + lives + " levens over!");
+                        myHearts();
+                    } else if (lives <= 0) {
+                        document.images[num].src = "/img/mine.gif";
+                        isPlaying = false;
+                        alert("Boom, al je levens zijn opgebruikt");
+
+                        showMines();
+
+                        saveScore(prompt((msg_alt_saveScoreName_1 + score + msg_alt_saveScoreName_2), msg_question_name), score);
+                        refreshHS();
+
+                        myHearts();
+                    }
+                }
+            }
+        }
+
+        // onPlay function
+        function aantalMines(mijnen) {
+            minesArray = [];
+            isPlaying = true;
+            myHearts();
+
+            var numMine;
+            while (minesArray.length < mijnen) {
+                numMine = Math.round(Math.random() * aantal);
+                if (minesArray.indexOf(numMine) === -1) {
+                    minesArray.push(numMine);
+                }
+            }
+        }
+        
+        // onPlay function
+        function setDifficulty(diff) {
+
+            if (diff === null) {
+                setDifficulty(prompt(msg_difficulty, msg_question_difficultySelect));
+                console.log("Difficulty was null... Asking again!");
+            }
+
+            var caseInsensitiveDiff = diff.toLowerCase();
+            switch (caseInsensitiveDiff) {
+                    
+            case "custom":
+            case "c":
+                mijnen = prompt(msg_customDiff, msg_question_numMines);
+                    
+                if (mijnen === 0 || mijnen >= aantal || !isFinite(mijnen) || !(Math.floor(mijnen) === mijnen || mijnen === null)) {
+                    alert("Foute waarde ingevoerd, gelieve opnieuw te proberen");
+                    setDifficulty("custom"); 
+                } else {
+                    aantalMines(mijnen);
+                }
+                    
+                break;
+                
+            default:
+                alert(msg_noDifficultyMatch);
+                setDifficulty(prompt(msg_difficulty, msg_question_difficultySelect));
+                break;
+            }
+        }
+        function Custom() {
+            setDifficulty("custom");
+        }
+        // onRetry function
+        function retry() {
+            isPlaying = false;
+            mijnen = 0;
+            minesArray = [];
+            clickedArray = [];
+            score = 0;
+            lives = 3;
+            for (i = 0; i < aantal; i++) {
+                document.images[i].src = "/img/wood.png";
+            }
+            window.status = "Spel werd gereset !";
+            alert("U kan het spel opnieuw starten!");
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <center>
+    <p id="myScore">Score : </p>
+    <p id="myHearts">Levens : </p>
+    <hr width="75%" />
+        <form>
+            <p class="Text">Choose Difficulty:</p>
+            <button type="button" onclick='aantalMines(10);' class="button" id="buttonLayout">Beginner</button>
+            <button type="button" onclick='aantalMines(15);' class="button" id="buttonLayout1">Medium</button>
+            <button type="button" onclick='aantalMines(20);' class="button" id="buttonLayout2">Hard</button>
+            <button type="button" onclick='Custom();' class="button" id="buttonLayout3">Custom</button>
+            <button type="button" onclick='retry();' class="button" id="retryButton">Opnieuw proberen?</button>
+            <br>
+        </form>
+    <table border="1" bgcolor="black">
+        
+        <tr>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(0);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(1);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(2);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(3);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(4);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(5);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(6);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(7);" /></td>
+        </tr>
+        <tr>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(8);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(9);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(10);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(11);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(12);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(13);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(14);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(15);" /></td>
+        </tr>
+        <tr>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(16);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(17);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(18);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(19);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(20);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(21);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(22);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(23);" /></td>
+        </tr>
+        <tr>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(24);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(25);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(26);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(27);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(28);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(29);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(30);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(31);" /></td>
+        </tr>
+        <tr>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(32);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(33);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(34);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(35);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(36);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(37);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(38);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(39);" /></td>
+        </tr>
+        <tr>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(40);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(41);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(42);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(43);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(44);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(45);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(46);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(47);" /></td>
+        </tr>
+        <tr>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(48);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(49);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(50);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(51);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(52);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(53);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(54);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(55);" /></td>
+        </tr>
+        <tr>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(56);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(57);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(58);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(59);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(60);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(61);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(62);" /></td>
+            <td><img src="/img/wood.png" width="30" height="30" onclick="playGame(63);" /></td>
+        </tr>
+    </table>
+    <p id="naamInvoeren">Highscore: </p>
+    <div id="result"></div>
+        </center>
+
+<div class="moreInformation">
+              <div class="content-block-title">More Information ?</div>
+              <div class="list-block">
+                <ul>
+                  <li><a href="about.html" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner"> 
+                          <div class="item-title">About</div>
+                        </div>
+                      </div></a></li>
+                </ul>
+              </div>
+              </div>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="js/my-app.js"></script>
+  </body>
